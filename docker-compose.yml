@@ -11,3 +11,6 @@ services:
     working_dir: /usr/src/applause
     volumes:
       - ./web:/usr/src/applause
+  db:
+    image: mongo
+    restart: always
