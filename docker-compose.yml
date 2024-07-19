@@ -10,8 +10,9 @@ services:
     image: node:20.15.1
     working_dir: /usr/src/applause
     volumes:
-      - ./web:/usr/src/applause
+      - ./web:/usr/src/applause:z
     command: yarn dev
+    user: node
   db:
     image: mongo
     restart: always
