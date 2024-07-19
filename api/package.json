@@ -4,5 +4,9 @@
   "main": "dist/main.js",
   "author": "Guilherme Isaías <guilherme@cibernetica.dev>",
   "license": "None",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "@types/node": "^20.14.11",
+    "typescript": "^5.5.3"
+  }
 }
