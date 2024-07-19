@@ -4,8 +4,9 @@ services:
   api:
     image: node:20.15.1
     working_dir: /usr/src/applause
+    user: node
     volumes:
-      - ./api:/usr/src/applause
+      - ./api:/usr/src/applause:z
   web:
     image: node:20.15.1
     working_dir: /usr/src/applause
