@@ -14,6 +14,8 @@ services:
       - ./web:/usr/src/applause:z
     command: yarn dev
     user: node
+    ports:
+      - 3000:3000
   db:
     image: mongo
     restart: always
