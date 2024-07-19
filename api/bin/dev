@@ -12,7 +12,13 @@ function transpile() {
 }
 
 function run_server() {
-
+    const root_dir = process.cwd()
+    const run_server_command = `yarn node ${root_dir}`
+    exec(run_server_command, (_error, stdout, stderr) => {
+        console.log(stdout)
+        console.error(stderr)
+    })
 }
 
 transpile()
+run_server()
