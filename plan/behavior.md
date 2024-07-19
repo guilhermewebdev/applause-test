@@ -17,6 +17,6 @@
     - cada um exibindo um nome e um status de se está funcionando.
   - Posso excluir um Time do Slack.
   - Vejo um formulário para adicionar um Time do Slack,
-    - com os campos nome e chave de integração.
+    - com o campo de chave de integração, e botão para criar.
   - Informo os campos do formulário, e seleciono o botão de criar.
   - O Time do Slack criado é adicionado a lista de Times do Slack.
