@@ -3,9 +3,16 @@ const { exec } = require('child_process');
 const path = require('path');
 
 function transpile() {
-
+    const tsconfig_path = path.resolve(process.cwd(), 'tsconfig.json')
+    const transpile_command = `yarn tsc --project ${tsconfig_path}`;
+    exec(transpile_command, (_error, stdout, stderr) => {
+        console.log(stdout)
+        console.error(stderr)
+    })
 }
 
 function run_server() {
 
 }
+
+transpile()
