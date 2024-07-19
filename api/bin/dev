@@ -1,2 +1,9 @@
 #!/usr/bin/env node
 
+function transpile() {
+
+}
+
+function run_server() {
+    
+}
