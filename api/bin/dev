@@ -2,22 +2,22 @@
 const { exec } = require('child_process');
 
 function cmd(command) {
-    exec(command, (_error, stdout, stderr) => {
-        console.log(stdout)
-        console.error(stderr)
-    })
+  exec(command, (_error, stdout, stderr) => {
+    console.log(stdout)
+    console.error(stderr)
+  })
 }
 
 function transpile() {
-    cmd('yarn build')
+  cmd('yarn build')
 }
 
 function lint() {
-    cmd('yarn lint')
+  cmd('yarn lint')
 }
 
 function run_server() {
-    cmd('yarn start')
+  cmd('yarn start')
 }
 
 transpile()
