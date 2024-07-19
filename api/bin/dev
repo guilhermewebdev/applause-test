@@ -14,9 +14,7 @@ function transpile() {
 }
 
 function lint() {
-    const root_dir = process.cwd();
-    const lint_command = `yarn lint ${root_dir}`;
-    cmd(lint_command)
+    cmd('yarn lint')
 }
 
 function run_server() {
