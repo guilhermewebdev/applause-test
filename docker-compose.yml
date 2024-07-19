@@ -16,6 +16,9 @@ services:
     restart: always
     volumes:
       - database:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root_pass
 
 volumes:
   database:
