@@ -14,7 +14,7 @@
 - Dado que sou administrador,
   - acesso a seção de administração pelo navegador.
   - Vejo uma lista de integrações,
-    - cada uma exibindo um nome.
+    - cada uma exibindo um nome e um status de se está funcionando.
   - Posso excluir uma integração.
   - Vejo um formulário para adicionar uma integração,
     - com os campos nome e chave de integração.
