@@ -11,6 +11,15 @@ function transpile() {
     })
 }
 
+function lint() {
+    const root_dir = process.cwd();
+    const lint_command = `yarn lint ${root_dir}`;
+    exec(lint_command, (_error, stdout, stderr) => {
+        console.log(stdout)
+        console.error(stderr)
+    })
+}
+
 function run_server() {
     const root_dir = process.cwd()
     const run_server_command = `yarn node ${root_dir}`
@@ -21,4 +30,5 @@ function run_server() {
 }
 
 transpile()
+lint()
 run_server()
