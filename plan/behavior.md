@@ -4,10 +4,11 @@
   - acesso a plataforma pelo navegador.
   - Vejo uma lista de Times do Slack.
   - Seleciono um Time do Slack.
-  - Vejo uma lista de pessoas,
+  - Vejo uma lista de Membros do Time do Slack,
     - cada uma com nome, foto e email.
-      - Em pessoas que não possuem foto, vejo a imagem de uma silueta genérica.
-  - Seleciono uma pessoa.
+      - nos Membros do Time do Slack que não possuem foto,
+        - vejo a imagem de uma silueta genérica.
+  - Seleciono um Membro do Time do Slack.
   - Vejo um campo para inserir uma mensagem, e um botão para enviar.
   - Informo uma mensagem, e seleciono o botão de enviar.
 
