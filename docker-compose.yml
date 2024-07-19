@@ -11,6 +11,7 @@ services:
     working_dir: /usr/src/applause
     volumes:
       - ./web:/usr/src/applause
+    command: yarn dev
   db:
     image: mongo
     restart: always
