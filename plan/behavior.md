@@ -6,8 +6,8 @@
   - Seleciono um Time do Slack.
   - Vejo uma lista de Membros do Time do Slack,
     - cada uma com nome, foto e email.
-      - nos Membros do Time do Slack que não possuem foto,
-        - vejo a imagem de uma silueta genérica.
+    - Nos Membros do Time do Slack que não possuem foto,
+      - vejo a imagem de uma silueta genérica.
   - Seleciono um Membro do Time do Slack.
   - Vejo um formulário para criar um Reconhecimento para o Membro do Time do Slack escolhido,
     - com um campo para inserir uma mensagem, e um botão para enviar.
