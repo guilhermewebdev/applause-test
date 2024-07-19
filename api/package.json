@@ -1,0 +1,8 @@
+{
+  "name": "applause",
+  "version": "1.0.0",
+  "main": "dist/main.js",
+  "author": "Guilherme Isaías <guilherme@cibernetica.dev>",
+  "license": "None",
+  "private": true
+}
