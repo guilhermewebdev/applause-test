@@ -2,31 +2,29 @@
 const { exec } = require('child_process');
 const path = require('path');
 
-function transpile() {
-    const tsconfig_path = path.resolve(process.cwd(), 'tsconfig.json')
-    const transpile_command = `yarn tsc --project ${tsconfig_path}`;
-    exec(transpile_command, (_error, stdout, stderr) => {
+function cmd(command) {
+    exec(command, (_error, stdout, stderr) => {
         console.log(stdout)
         console.error(stderr)
     })
+}
+
+function transpile() {
+    const tsconfig_path = path.resolve(process.cwd(), 'tsconfig.json')
+    const transpile_command = `yarn tsc --project ${tsconfig_path}`;
+    cmd(transpile_command)
 }
 
 function lint() {
     const root_dir = process.cwd();
     const lint_command = `yarn lint ${root_dir}`;
-    exec(lint_command, (_error, stdout, stderr) => {
-        console.log(stdout)
-        console.error(stderr)
-    })
+    cmd(lint_command)
 }
 
 function run_server() {
     const root_dir = process.cwd()
     const run_server_command = `yarn node ${root_dir}`
-    exec(run_server_command, (_error, stdout, stderr) => {
-        console.log(stdout)
-        console.error(stderr)
-    })
+    cmd(run_server_command)
 }
 
 transpile()
