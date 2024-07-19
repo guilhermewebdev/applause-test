@@ -6,3 +6,8 @@ services:
     working_dir: /usr/src/applause
     volumes:
       - ./api:/usr/src/applause
+  web:
+    image: node:20.15.1
+    working_dir: /usr/src/applause
+    volumes:
+      - ./web:/usr/src/applause
