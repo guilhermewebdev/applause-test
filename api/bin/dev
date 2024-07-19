@@ -10,9 +10,7 @@ function cmd(command) {
 }
 
 function transpile() {
-    const tsconfig_path = path.resolve(process.cwd(), 'tsconfig.json')
-    const transpile_command = `yarn tsc --project ${tsconfig_path}`;
-    cmd(transpile_command)
+    cmd('yarn build')
 }
 
 function lint() {
