@@ -8,6 +8,10 @@ services:
     command: yarn dev
     volumes:
       - ./api:/usr/src/applause:z
+    depends_on:
+      db:
+        condition: service_healthy
+        restart: true
   web:
     image: node:20.15.1
     working_dir: /usr/src/applause
