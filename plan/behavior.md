@@ -1,7 +1,7 @@
 # Comportamentos esperados
 
 - Dado que sou usuário,
-  - acesso o sistema pelo navegador.
+  - acesso a plataforma pelo navegador.
   - Vejo uma lista de integrações.
   - Seleciono uma integração.
   - Vejo uma lista de pessoas,
