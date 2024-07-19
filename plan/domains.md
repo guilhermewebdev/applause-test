@@ -1,10 +1,10 @@
 # Dominios da aplicação
 
 - Time do Slack
-  - tipo: Principal
+  - tipo: Suporte
 
 - Membro do Time do Slack
-  - tipo: Principal
+  - tipo: Suporte
 
 - Reconhecimento
   - tipo: Principal
