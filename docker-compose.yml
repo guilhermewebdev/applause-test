@@ -1,6 +1,13 @@
 version: "3"
 
 services:
+  api-builder:
+    image: node:20.15.1
+    working_dir: /usr/src/applause
+    user: node
+    command: yarn tsc --watch
+    volumes:
+      - ./api:/usr/src/applause:z
   api:
     image: node:20.15.1
     working_dir: /usr/src/applause
