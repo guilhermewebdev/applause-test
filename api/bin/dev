@@ -1,9 +1,11 @@
 #!/usr/bin/env node
+const { exec } = require('child_process');
+const path = require('path');
 
 function transpile() {
 
 }
 
 function run_server() {
-    
+
 }
