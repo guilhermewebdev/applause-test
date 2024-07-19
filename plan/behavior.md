@@ -9,11 +9,13 @@
       - nos Membros do Time do Slack que não possuem foto,
         - vejo a imagem de uma silueta genérica.
   - Seleciono um Membro do Time do Slack.
-  - Vejo um campo para inserir uma mensagem, e um botão para enviar.
-  - Informo uma mensagem, e seleciono o botão de enviar.
-  - A mensagem é enviada para o Membro do Time do Slack,
-    - e será recebida em uma conversa dentro do Slack.
-  - A mensagem também será salva em um banco de dados ao ser enviada.
+  - Vejo um formulário para criar um Reconhecimento para o Membro do Time do Slack escolhido,
+    - com um campo para inserir uma mensagem, e um botão para enviar.
+  - Informo o campo de mensagem, e seleciono o botão de enviar.
+  - O Reconhecimento é enviado para o Membro do Time do Slack,
+    - e será recebido em uma conversa dentro do Slack,
+    - exibindo a mensagem escrita.
+  - O Reconhecimento também será salvo em um banco de dados ao ser enviado.
 
 - Dado que sou administrador,
   - acesso a seção de administração pelo navegador.
