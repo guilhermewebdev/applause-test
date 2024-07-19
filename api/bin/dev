@@ -20,6 +20,6 @@ function run_server() {
   cmd('yarn start')
 }
 
-transpile()
 lint()
+transpile()
 run_server()
