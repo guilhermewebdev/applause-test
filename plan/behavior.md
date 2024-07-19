@@ -11,6 +11,9 @@
   - Seleciono um Membro do Time do Slack.
   - Vejo um campo para inserir uma mensagem, e um botão para enviar.
   - Informo uma mensagem, e seleciono o botão de enviar.
+  - A mensagem é enviada para o Membro do Time do Slack,
+    - e será recebida em uma conversa dentro do Slack.
+  - A mensagem também será salva em um banco de dados ao ser enviada.
 
 - Dado que sou administrador,
   - acesso a seção de administração pelo navegador.
