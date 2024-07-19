@@ -6,7 +6,7 @@
   "license": "None",
   "private": true,
   "scripts": {
-    "dev": "node --watch-path=./dist --watch ./bin/dev"
+    "dev": "node --watch-path=./src --watch ./bin/dev"
   },
   "devDependencies": {
     "@types/node": "^20.14.11",
