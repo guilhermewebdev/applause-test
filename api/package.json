@@ -5,6 +5,9 @@
   "author": "Guilherme Isaías <guilherme@cibernetica.dev>",
   "license": "None",
   "private": true,
+  "scripts": {
+    "dev": "node --watch-path=./dist --watch ."
+  },
   "devDependencies": {
     "@types/node": "^20.14.11",
     "typescript": "^5.5.3"

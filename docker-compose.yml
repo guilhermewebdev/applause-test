@@ -12,6 +12,7 @@ services:
     image: node:20.15.1
     working_dir: /usr/src/applause
     user: node
+    command: yarn dev
     volumes:
       - ./api:/usr/src/applause:z
   web:
