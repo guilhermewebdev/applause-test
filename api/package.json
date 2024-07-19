@@ -1,0 +1,22 @@
+{
+  "name": "applause",
+  "version": "1.0.0",
+  "main": "dist/main.js",
+  "author": "Guilherme Isaías <guilherme@cibernetica.dev>",
+  "license": "None",
+  "private": true,
+  "scripts": {
+    "dev": "node --watch-path=./src --watch-path=./package.json --watch-path=./tsconfig.json --watch-path=./bin --watch-path=yarn.lock --watch ./bin/dev",
+    "build": "tsc",
+    "lint": "eslint ./src ./bin/dev",
+    "start": "node ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.7.0",
+    "@types/node": "^20.14.11",
+    "eslint": "9.x",
+    "globals": "^15.8.0",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^7.16.1"
+  }
+}

@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+  api:
+    image: node:20.15.1
+    working_dir: /usr/src/applause
+    user: node
+    command: yarn dev
+    volumes:
+      - ./api:/usr/src/applause:z
+    depends_on:
+      db:
+        condition: service_healthy
+        restart: true
+  web:
+    image: node:20.15.1
+    working_dir: /usr/src/applause
+    volumes:
+      - ./web:/usr/src/applause:z
+    command: yarn dev
+    user: node
+    ports:
+      - 3000:3000
+    depends_on:
+      db:
+        condition: service_started
+  db:
+    image: mongo
+    restart: always
+    volumes:
+      - database:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root_pass
+
+volumes:
+  database:
