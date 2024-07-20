@@ -2,6 +2,11 @@
 
 - ## Entities
   - `SlackTeam`
+    - `id`
+      - string
+      - obrigatório
+      - unico
+      - índice
     - `integrationKey`
       - string
       - obrigatório
@@ -22,7 +27,7 @@
     - `POST /api/slack_teams`
       - Retorna:
         - 201 `SlackTeam`
-        - 400 `InvalidSlackIntegrationKey`
+        - 400 `InvalidSlackIntegrationKeyError`
         - 401 `Unalthorized`
   - ### Payload
     - `slackTeamPayload`
@@ -81,3 +86,34 @@
   - ### Entities
     - `SlackTeam`
   
+- ## SlackTeam Deletion
+  - ### Endpoint
+    - `DELETE /api/slack_teams/:id`
+      - Retorna:
+        - 204
+        - 404 `SlackTeamNotFoundError`
+        - 401 `Unalthorized`
+  - ### Params
+    - `id`
+      - string
+  - ### Controller
+    - `SlackTeamController.delete`
+      - recebe `id`
+  - ### Policies
+    - `SlackTeamPolicy.delete`
+      - Permite apenas administradores
+      - Retorna `Unalthorized` caso não esteja autenticado
+  - ### Validation
+    - `id`
+      - string
+      - obrigatório
+  - ### Services
+    - `SlackTeamService.delete`
+      - recebe `id`
+      - deleta o registro de SlackTeam com o id correspondente
+  - ### Repositories
+    - `SlackTeamRepository.delete`
+      - recebe `id`
+      - deleta o registro de SlackTeam no banco de dados
+  - ### Entities
+    - `SlackTeam`
