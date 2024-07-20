@@ -1,0 +1,113 @@
+# SlackTeam API
+
+- ## Entities
+  - ### `SlackTeam` (interno)
+    - `integration_key`
+      - string
+      - obrigatório
+      - somente escrita
+    - `slack_id`
+      - string
+      - obrigatório
+      - indice
+      - somente leitura
+      - obtido automaticamente
+    - `name`
+      - string
+      - obrigatório
+
+- ## SlackTeam Creation
+  - ### Endpoint
+    - `POST /api/slack_teams`
+      - Retorna:
+        - 201 `SlackTeam`
+        - 400 `InvalidSlacIntegrationKeyError`
+        - 401 `Unalthorized`
+  - ### Payload
+    - `slack_team_payload`
+      - JSON:
+        - `integration_key`
+  - ### Controller
+    - `SlackTeamController.create`
+      - recebe `slack_team_payload`
+      - retorna `SlackTeam`
+  - ### Policies
+    - `SlackTeamPolicy.create`
+      - Permite apenas administradores
+      - Retorna `Unalthorized` caso não esteja autenticado
+  - ### Validation
+    - `integration_key`
+      - string
+      - obrigatório
+  - ### Services
+    - `SlackTeamService.create`
+      - recebe `slack_team_payload`
+      - Recupera o nome do Time do Slack e adiciona aos dados da integração.
+      - Caso a chave não seja válida, retorna o erro `InvalidSlacIntegrationKeyError`
+      - Salva uma integração
+      - retorna instancia `SlackTeam`
+  - ### Repositories
+    - `SlackTeamRepository.create`
+      - recebe `SlackTeam`
+          - contendo a chave de integração, id e o nome do time.
+      - Salva os dados da integração no banco de dados
+    - `SlackApiTeamRepository.get`
+      - recebe `integration_key`
+      - obtém os dados do time por meio do endpoint `GET /team.info` na api do `Slack`
+      - retorna `SlackTeam`
+  - ### Entities
+    - `SlackTeam`
+    - `SlackTeam`
+
+- ## SlackTeam Listing
+  - ### Endpoint
+    - `GET /api/slack_teams`
+      - Retorna:
+        - 200 `[SlackTeam]`
+  - ### Controller
+    - `SlackTeamController.list`
+      - retorna `[SlackTeam]`
+  - ### Policies
+    - `SlackTeamPolicy.list`
+    - Permite acesso a todos
+  - ### Services
+    - `SlackTeamService.list`
+      - lista os registros de `SlackTeams` disponíveis
+      - retorna `[SlackTeam]`
+  - ### Repositories
+    - `SlackTeamRepository.list`
+      - lista os registros de `SlackTeams` no banco de dados
+  - ### Entities
+    - `SlackTeam`
+  
+- ## SlackTeam Deletion
+  - ### Endpoint
+    - `DELETE /api/slack_teams/:slack_id`
+      - Retorna:
+        - 204
+        - 404 `SlackTeamNotFoundError`
+        - 401 `Unalthorized`
+  - ### Params
+    - `id`
+      - string
+  - ### Controller
+    - `SlackTeamController.delete`
+      - recebe `id`
+  - ### Policies
+    - `SlackTeamPolicy.delete`
+      - Permite apenas administradores
+      - Retorna `Unalthorized` caso não esteja autenticado
+  - ### Validation
+    - `id`
+      - string
+      - obrigatório
+  - ### Services
+    - `SlackTeamService.delete`
+      - recebe `id`
+      - deleta o registro de SlackTeam com o id correspondente
+  - ### Repositories
+    - `SlackTeamRepository.delete`
+      - recebe `id`
+      - deleta o registro de SlackTeam no banco de dados
+  - ### Entities
+    - `SlackTeam`

@@ -1,0 +1,57 @@
+# SlackTeamMember API
+
+- ## Entities
+  - ### `SlackTeamMember` (externo)
+    - `email`
+      - string
+      - obrigatório
+    - `slack_id`
+      - string
+      - obrigatório
+    - `name`
+      - string
+      - obrigatório
+    - `avatar_url`
+      - string
+
+ ## SlackTeamMember Listing
+  - ### Endpoint
+    - `GET /api/slack_teams/:slack_id/members`
+      - Retorna:
+        - 200:
+          - `[SlackTeamMember]`
+          - `next_page_cursor`
+  - ### Params
+    - `slack_id`
+      - string
+      - obrigatório
+    - `page_cursor`
+      - string
+      - opcional
+  - ### Controller
+    - `SlackTeamMemberController.list`
+      - recebe `slack_id` e `page_cursor`
+      - retorna `[SlackTeamMember]`
+      - retorna `next_page_cursor`
+  - ### Policies
+    - `SlackTeamMemberPolicy.list`
+    - Permite acesso a todos
+  - ### Services
+    - `SlackTeamMemberService.list`
+      - recebe `slack_id`
+      - lista os registros de `SlackTeamMembers` disponíveis
+      - retorna `[SlackTeamMember]`
+      - retorna `next_page_cursor`
+  - ### Repositories
+    - `SlackApiTeamMemberRepository.list`
+      - recebe `slack_id`
+      - obtém lista de `SlackTeamMember` por meio do endpoint `GET /users.list` na api do `Slack`
+        - limita a quantidade de itens respondidos em 100
+        - usa o parametro `include_locale` como `false`
+        - envia o parametro `team_id` com o valor de `slack_id`
+        - cache de 1 minuto, usando o nome do método e os parametros como chave
+      - retorna `[SlackTeamMember]`
+      - retorna `next_page_cursor`
+  - ### Entities
+    - `SlackTeamMember`
+  

@@ -1,0 +1,53 @@
+# Recognizement API
+
+- ## Entities
+  - ### `Recognizement` (interno)
+    - `message`
+      - string
+      - obrigatório
+      - somente escrita
+    - `slack_team_member_id`
+      - string
+      - obrigatório
+
+ ## Recognizement Creation
+  - ### Endpoint
+    - `POST /api/recognizement`
+      - Retorna:
+        - 201 `Recognizement`
+        - 400 `InvalidParamsError`
+  - ### Payload
+    - `recognizement`
+      - `Recognizement`
+  - ### Controller
+    - `RecognizementController.create`
+      - recebe `recognizement`
+      - retorna `Recognizement`
+  - ### Policies
+    - `RecognizementPolicy.create`
+      - Permite todos
+  - ### Validation
+    - `message`
+      - string
+      - obrigatório
+    - `slack_team_member_id`
+      - string
+      - obrigatório
+  - ### Services
+    - `RecognizementService.create`
+      - recebe `recognizement`
+      - submete a mensagem para o chat no Slack
+      - salva a mensagem
+      - retorna instancia `Recognizement`
+  - ### Repositories
+    - `RecognizementRepository.create`
+      - recebe `Recognizement`
+      - Salva a instância no banco de dados
+    - `SlackApiChatMessageRepository.create`
+      - recebe `Recognizement`
+      - envia a mensagem utilizando o endpoint `/chat.postMessage` na api do Slack
+        - envia o parâmetro `text` como `Recognizement.message`
+        - envia o parâmetro `channel` como `Recognizement.slack_team_member_id`
+      - retorna `Recognizement`
+  - ### Entities
+    - `Recognizement`
