@@ -5,9 +5,51 @@
     - `email`
       - string
       - obrigatório
-    - `slack_id`
+    - `slackId`
       - string
       - obrigatório
     - `name`
       - string
       - obrigatório
+
+ ## SlackTeamMember Listing
+  - ### Endpoint
+    - `GET /api/slack_teams/:slackId/members`
+      - Retorna:
+        - 200:
+          - `[SlackTeamMember]`
+          - `nextPageCursor`
+  - ### Params
+    - `slackId`
+      - string
+      - obrigatório
+    - `pageCursor`
+      - string
+      - opcional
+  - ### Controller
+    - `SlackTeamMemberController.list`
+      - recebe `slackId` e `pageCursor`
+      - retorna `[SlackTeamMember]`
+      - retorna `nextPageCursor`
+  - ### Policies
+    - `SlackTeamMemberPolicy.list`
+    - Permite acesso a todos
+  - ### Services
+    - `SlackTeamMemberService.list`
+      - recebe `slackId`
+      - lista os registros de `SlackTeamMembers` disponíveis
+      - retorna `[SlackTeamMember]`
+      - retorna `nextPageCursor`
+  - ### Repositories
+    - `SlackApiTeamMemberRepository.list`
+      - recebe `slackId`
+      - obtém lista de `SlackTeamMember` por meio do endpoint `GET /users.list` na api do `Slack`
+        - limita a quantidade de itens respondidos em 100
+        - usa o parametro `include_locale` como `false`
+        - envia o parametro `team_id` com o valor de `slackId`
+        - cache de 1 minuto, usando os parâmetros como chave
+      - retorna `[SlackTeamMember]`
+      - retorna `nextPageCursor`
+  - ### Entities
+    - `SlackTeamMember`
+  
