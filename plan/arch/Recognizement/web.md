@@ -1,4 +1,4 @@
-# Recognizement Web pages
+# Recognizement Web Pages
 
 ## Recognizement Creation
 - ### Route
