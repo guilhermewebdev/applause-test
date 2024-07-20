@@ -2,25 +2,16 @@
 
 - ## Entities
   - ### `SlackTeam`
-    - `id`
-      - string
-      - obrigatório
-      - unico
-      - índice
     - `integrationKey`
       - string
       - obrigatório
     - `slack_id`
       - string
       - obrigatório
+      - indice
     - `name`
       - string
       - obrigatório
-  - ### `ExternalSlackTeam`
-    - `id`
-      - integer
-    - `name`
-      - string
 
 - ## SlackTeam Creation
   - ### Endpoint
@@ -60,10 +51,10 @@
     - `SlackApiTeamRepository.info`
       - recebe `integrationKey`
       - obtém os dados do time por meio do endpoint `GET /team.info`
-      - retorna `ExternalSlackTeam`
+      - retorna `SlackTeam`
   - ### Entities
     - `SlackTeam`
-    - `ExternalSlackTeam`
+    - `SlackTeam`
 
 - ## SlackTeam Listing
   - ### Endpoint
@@ -88,7 +79,7 @@
   
 - ## SlackTeam Deletion
   - ### Endpoint
-    - `DELETE /api/slack_teams/:id`
+    - `DELETE /api/slack_teams/:slack_id`
       - Retorna:
         - 204
         - 404 `SlackTeamNotFoundError`
