@@ -51,9 +51,9 @@
       - recebe `slackTeamData`
           - contendo a chave de integração, id e o nome do time.
       - Salva os dados da integração no banco de dados
-    - `SlackApiTeamRepository.info`
+    - `SlackApiTeamRepository.get`
       - recebe `integrationKey`
-      - obtém os dados do time por meio do endpoint `GET /team.info`
+      - obtém os dados do time por meio do endpoint `GET /team.info` na api do `Slack`
       - retorna `SlackTeam`
   - ### Entities
     - `SlackTeam`
