@@ -1,7 +1,7 @@
 # SlackTeam API
 
 - ## Entities
-  - ### `SlackTeam`
+  - ### `SlackTeam` (interno)
     - `integrationKey`
       - string
       - obrigatório

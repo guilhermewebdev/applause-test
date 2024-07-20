@@ -1,7 +1,7 @@
 # SlackTeamMember API
 
 - ## Entities
-  - ### `SlackTeamMember`
+  - ### `SlackTeamMember` (externo)
     - `email`
       - string
       - obrigatório
