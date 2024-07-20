@@ -5,10 +5,13 @@
     - `integrationKey`
       - string
       - obrigatório
+      - somente escrita
     - `slack_id`
       - string
       - obrigatório
       - indice
+      - somente leitura
+      - obtido automaticamente
     - `name`
       - string
       - obrigatório
