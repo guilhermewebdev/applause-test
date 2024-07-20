@@ -19,3 +19,17 @@
       - recebe:
         - `onCreate(SlackTeam)`
         - `slackTeams`: `[SlackTeam]`
+
+## SlackTeam List
+- ### Route
+  - `/slack_team`
+  - Estados:
+    - `slackTeams`: `[SlackTeam]`
+  - Funções:
+    - `loadSlackTeams()`:
+      - `GET /api/slack_teams`
+        - atualiza `slackTeams`
+  - Componentes:
+    - `<SlackTeamList>`
+      - recebe:
+        - `slackTeams`: `[SlackTeam]`
