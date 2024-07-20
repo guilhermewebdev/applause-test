@@ -47,7 +47,7 @@
         - limita a quantidade de itens respondidos em 100
         - usa o parametro `include_locale` como `false`
         - envia o parametro `team_id` com o valor de `slackId`
-        - cache de 1 minuto, usando os parâmetros como chave
+        - cache de 1 minuto, usando o nome do método e os parametros como chave
       - retorna `[SlackTeamMember]`
       - retorna `nextPageCursor`
   - ### Entities
