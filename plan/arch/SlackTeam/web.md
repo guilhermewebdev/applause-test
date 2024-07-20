@@ -3,12 +3,14 @@
 ## SlackTeam Creation
 - ### Route
   - `/slack_team/create`
+  - Rota autenticada
   - Estados:
     - `slackTeams`: `[SlackTeam]`
   - Funções:
     - `onCreate(SlackTeam)`:
       - `POST /api/slack_teams`
         - payload: `SlackTeam`
+      - `loadStackTeams()`
     - `loadSlackTeams()`:
       - `GET /api/slack_teams`
         - atualiza `slackTeams`
