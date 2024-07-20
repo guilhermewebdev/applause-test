@@ -2,7 +2,7 @@
 
 - ## Entities
   - ### `SlackTeam` (interno)
-    - `integrationKey`
+    - `integration_key`
       - string
       - obrigatório
       - somente escrita
@@ -21,38 +21,38 @@
     - `POST /api/slack_teams`
       - Retorna:
         - 201 `SlackTeam`
-        - 400 `InvalidSlackIntegrationKeyError`
+        - 400 `InvalidSlacIntegrationKeyError`
         - 401 `Unalthorized`
   - ### Payload
-    - `slackTeamPayload`
+    - `slack_team_payload`
       - JSON:
-        - `integrationKey`
+        - `integration_key`
   - ### Controller
     - `SlackTeamController.create`
-      - recebe `slackTeamPayload`
+      - recebe `slack_team_payload`
       - retorna `SlackTeam`
   - ### Policies
     - `SlackTeamPolicy.create`
       - Permite apenas administradores
       - Retorna `Unalthorized` caso não esteja autenticado
   - ### Validation
-    - `integrationKey`
+    - `integration_key`
       - string
       - obrigatório
   - ### Services
     - `SlackTeamService.create`
-      - recebe `slackTeamPayload`
+      - recebe `slack_team_payload`
       - Recupera o nome do Time do Slack e adiciona aos dados da integração.
-      - Caso a chave não seja válida, retorna o erro `InvalidSlackIntegrationKey`
+      - Caso a chave não seja válida, retorna o erro `InvalidSlacIntegrationKeyError`
       - Salva uma integração
       - retorna instancia `SlackTeam`
   - ### Repositories
     - `SlackTeamRepository.create`
-      - recebe `slackTeamData`
+      - recebe `SlackTeam`
           - contendo a chave de integração, id e o nome do time.
       - Salva os dados da integração no banco de dados
     - `SlackApiTeamRepository.get`
-      - recebe `integrationKey`
+      - recebe `integration_key`
       - obtém os dados do time por meio do endpoint `GET /team.info` na api do `Slack`
       - retorna `SlackTeam`
   - ### Entities

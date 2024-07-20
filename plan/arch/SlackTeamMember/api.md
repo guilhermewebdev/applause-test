@@ -5,53 +5,53 @@
     - `email`
       - string
       - obrigatório
-    - `slackId`
+    - `slack_id`
       - string
       - obrigatório
     - `name`
       - string
       - obrigatório
-    - `avatarUrl`
+    - `avatar_url`
       - string
 
  ## SlackTeamMember Listing
   - ### Endpoint
-    - `GET /api/slack_teams/:slackId/members`
+    - `GET /api/slack_teams/:slack_id/members`
       - Retorna:
         - 200:
           - `[SlackTeamMember]`
-          - `nextPageCursor`
+          - `next_page_cursor`
   - ### Params
-    - `slackId`
+    - `slack_id`
       - string
       - obrigatório
-    - `pageCursor`
+    - `page_cursor`
       - string
       - opcional
   - ### Controller
     - `SlackTeamMemberController.list`
-      - recebe `slackId` e `pageCursor`
+      - recebe `slack_id` e `page_cursor`
       - retorna `[SlackTeamMember]`
-      - retorna `nextPageCursor`
+      - retorna `next_page_cursor`
   - ### Policies
     - `SlackTeamMemberPolicy.list`
     - Permite acesso a todos
   - ### Services
     - `SlackTeamMemberService.list`
-      - recebe `slackId`
+      - recebe `slack_id`
       - lista os registros de `SlackTeamMembers` disponíveis
       - retorna `[SlackTeamMember]`
-      - retorna `nextPageCursor`
+      - retorna `next_page_cursor`
   - ### Repositories
     - `SlackApiTeamMemberRepository.list`
-      - recebe `slackId`
+      - recebe `slack_id`
       - obtém lista de `SlackTeamMember` por meio do endpoint `GET /users.list` na api do `Slack`
         - limita a quantidade de itens respondidos em 100
         - usa o parametro `include_locale` como `false`
-        - envia o parametro `team_id` com o valor de `slackId`
+        - envia o parametro `team_id` com o valor de `slack_id`
         - cache de 1 minuto, usando o nome do método e os parametros como chave
       - retorna `[SlackTeamMember]`
-      - retorna `nextPageCursor`
+      - retorna `next_page_cursor`
   - ### Entities
     - `SlackTeamMember`
   
