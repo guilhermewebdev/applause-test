@@ -1,5 +1,22 @@
 # SlackTeam API
 
+- ## Entities
+  - `SlackTeam`
+    - `integrationKey`
+      - string
+      - obrigatório
+    - `slack_id`
+      - string
+      - obrigatório
+    - `name`
+      - string
+      - obrigatório
+  - `ExternalSlackTeam`
+    - `id`
+      - integer
+    - `name`
+      - string
+
 - ## SlackTeam Creation
   - ### Endpoint
     - `POST /api/slack_teams`
@@ -41,17 +58,26 @@
       - retorna `ExternalSlackTeam`
   - ### Entities
     - `SlackTeam`
-      - `integrationKey`
-        - string
-        - obrigatório
-      - `slack_id`
-        - string
-        - obrigatório
-      - `name`
-        - string
-        - obrigatório
     - `ExternalSlackTeam`
-      - `id`
-        - integer
-      - `name`
-        - string
+
+- ## SlackTeam Listing
+  - ### Endpoint
+    - `GET /api/slack_teams`
+      - Retorna:
+        - 200 `[SlackTeam]`
+  - ### Controller
+    - `SlackTeamController.list`
+      - retorna `[SlackTeam]`
+  - ### Policies
+    - `SlackTeamPolicy.list`
+    - Permite acesso a todos
+  - ### Services
+    - `SlackTeamService.list`
+      - lista os registros de `SlackTeams` disponíveis
+      - retorna `[SlackTeam]`
+  - ### Repositories
+    - `SlackTeamRepository.list`
+      - lista os registros de `SlackTeams` no banco de dados
+  - ### Entities
+    - `SlackTeam`
+  
