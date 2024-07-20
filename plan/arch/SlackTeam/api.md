@@ -1,7 +1,7 @@
 # SlackTeam API
 
 - ## Entities
-  - `SlackTeam`
+  - ### `SlackTeam`
     - `id`
       - string
       - obrigatório
@@ -16,7 +16,7 @@
     - `name`
       - string
       - obrigatório
-  - `ExternalSlackTeam`
+  - ### `ExternalSlackTeam`
     - `id`
       - integer
     - `name`
