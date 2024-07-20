@@ -11,6 +11,8 @@
     - `name`
       - string
       - obrigatório
+    - `avatarUrl`
+      - string
 
  ## SlackTeamMember Listing
   - ### Endpoint
