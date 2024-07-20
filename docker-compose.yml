@@ -18,11 +18,8 @@ services:
       - ./web:/usr/src/applause:z
     command: yarn dev
     user: node
-    ports:
-      - 3000:3000
     depends_on:
-      db:
-        condition: service_started
+      - db
   db:
     image: mongo:8.0-rc
     restart: always
@@ -72,6 +69,19 @@ services:
       interval: 10s
       timeout: 3s
       retries: 3
+  server:
+    image: nginx:1.26-alpine
+    restart: always
+    volumes:
+      - ./server/conf.d/dev.conf:/etc/nginx/conf.d:ro
+      - ./web/.next/static:/var/www/web-static:ro
+    command: [nginx-debug, '-g', 'daemon off;']
+    depends_on:
+      - auth
+      - web
+      - api
+    ports:
+      - 8080
 volumes:
   database:
   auth-db:
