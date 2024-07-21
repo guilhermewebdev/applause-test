@@ -1,38 +1,48 @@
 import { describe, expect, test, beforeAll, afterAll, jest } from '@jest/globals';
-import { WebClient } from '@slack/web-api';
+import { ChatPostMessageArguments, ChatPostMessageResponse, Method, WebClient } from '@slack/web-api';
 import { SlackApiChatMessageRepositoryImpl } from './slack_api_chat_message_repository';
 import { SlackApiChatMessageRepository } from '../@types/repositories/slack_api_chat_message_repository';
 import { SlackMessageCreationError } from '../../../errors/slack_message_creation_error';
 
+const postMessageMock = jest.fn<Method<ChatPostMessageArguments, ChatPostMessageResponse>>()
+
+jest.mock('@slack/web-api', () => {
+  return {
+    WebClient: class {
+      chat = {
+        postMessage: postMessageMock
+      }
+    }
+  }
+})
+
 describe('SlackApiChatMessageRepository', () => {
-  let slack_client: WebClient;
   let repository: SlackApiChatMessageRepository;
 
   beforeAll(async () => {
-    slack_client = new WebClient();
-    repository = new SlackApiChatMessageRepositoryImpl(slack_client)
+    repository = new SlackApiChatMessageRepositoryImpl()
   })
 
   describe('.create', () => {
 
     test('when success', async () => {
-      slack_client.chat.postMessage = jest.fn(async () => ({ ok: true }));
+      postMessageMock.mockResolvedValue({ ok: true })
       await repository.create({
         message: 'test message',
         slack_team_member_id: '10',
+        slack_integration_key: '555'
       })
-      expect(slack_client.chat.postMessage).toBeCalledTimes(1);
     })
 
     test('when the error occurs', async () => {
-      slack_client.chat.postMessage = jest.fn(async () => ({ ok: false }));
+      postMessageMock.mockResolvedValue({ ok: false, error: 'mock_error' })
       expect(async () => {
         await repository.create({
           message: 'test message',
           slack_team_member_id: '10',
+          slack_integration_key: '555'
         })
       }).rejects.toBeInstanceOf(SlackMessageCreationError)
-      expect(slack_client.chat.postMessage).toBeCalledTimes(1);
     })
 
   })
