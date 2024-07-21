@@ -15,6 +15,7 @@
   "devDependencies": {
     "@eslint/js": "^9.7.0",
     "@jest/globals": "^29.7.0",
+    "@shelf/jest-mongodb": "^4.3.2",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.12",
     "@types/mongodb": "^4.0.7",
@@ -26,11 +27,11 @@
     "jest": "^29.7.0",
     "ts-jest": "^29.2.3",
     "ts-node": "^10.9.2",
-    "@shelf/jest-mongodb": "^4.3.2",
     "typescript": "^5.5.3",
     "typescript-eslint": "^7.16.1"
   },
   "dependencies": {
+    "@slack/web-api": "^7.3.1",
     "express": "^4.19.2",
     "mongodb": "^6.8.0",
     "yup": "^1.4.0"
