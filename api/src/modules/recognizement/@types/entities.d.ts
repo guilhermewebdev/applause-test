@@ -3,6 +3,8 @@ export interface Recognizement {
   slack_team_member_id: string;
 }
 
-export interface RecognizementInput extends Recognizement {}
+export interface RecognizementInput extends Recognizement {
+  slack_integration_key: string;
+}
 
 export interface RecognizementOutput extends Recognizement {}
