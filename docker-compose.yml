@@ -73,7 +73,7 @@ services:
     image: nginx:1.26-alpine
     restart: always
     volumes:
-      - ./server/conf.d/dev.conf:/etc/nginx/conf.d:ro
+      - ./server/conf.d/dev:/etc/nginx/conf.d:ro
       - ./web/.next/static:/var/www/web-static:ro
     command: [nginx-debug, '-g', 'daemon off;']
     depends_on:
