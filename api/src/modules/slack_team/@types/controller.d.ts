@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { SlackTeam, SlackTeamInput, SlackTeamOutput } from "./entities";
+import { SlackTeamInput, SlackTeamOutput } from "./entities";
 
 export interface SlackTeamController {
   create: RequestHandler<
@@ -8,9 +8,9 @@ export interface SlackTeamController {
     { slack_team: SlackTeamOutput }
   >;
   list: RequestHandler<
-    {},
+    void,
     void,
     { slack_teams: SlackTeamOutput[] }
   >;
-  delete: RequestHandler<{}, void, void>;
+  delete: RequestHandler<{ slack_id: string }, void, void>;
 }

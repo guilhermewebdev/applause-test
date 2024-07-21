@@ -1,9 +1,9 @@
 import { RequestHandler } from "express";
-import { Recognizement, RecognizementInput, RecognizementOutput } from "./entities";
+import { RecognizementInput, RecognizementOutput } from "./entities";
 
 export interface RecognizementController {
   create: RequestHandler<
-    {},
+    void,
     { recognizement: RecognizementInput },
     { recognizement: RecognizementOutput }
   >;
