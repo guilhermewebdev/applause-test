@@ -1,6 +1,6 @@
 import { SlackTeamService } from "./@types/service";
 import { Recognizement, RecognizementService } from "../recognizement";
-import { RecognizementCreationInput } from "./@types/entities";
+import { RecognizementCreationInput, SlackTeam, SlackTeamInput } from "./@types/entities";
 import { SlackTeamRepository } from "./@types/repositories/slack_team_repository";
 
 export class SlackTeamServiceImpl implements SlackTeamService {
@@ -22,5 +22,17 @@ export class SlackTeamServiceImpl implements SlackTeamService {
       ...recognizement_payload,
       slack_integration_key: slack_team.integration_key
     });
+  }
+
+  async create(payload: SlackTeamInput): Promise<SlackTeam> {
+    return {} as SlackTeam;
+  }
+
+  async delete(id: string): Promise<void> {
+    return;
+  }
+
+  async list(): Promise<SlackTeam[]> {
+    return []
   }
 }
