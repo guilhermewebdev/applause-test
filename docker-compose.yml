@@ -1,7 +1,7 @@
 version: "3"
 services:
   api:
-    image: node:20
+    image: node:20-slim
     working_dir: /usr/src/applause
     user: node
     command: yarn dev
@@ -12,7 +12,7 @@ services:
         condition: service_healthy
         restart: true
   web:
-    image: node:20
+    image: node:20-slim
     working_dir: /usr/src/applause
     volumes:
       - ./web:/usr/src/applause:z
