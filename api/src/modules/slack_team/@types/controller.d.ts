@@ -1,5 +1,6 @@
 import { RequestHandler } from "express";
-import { SlackTeamInput, SlackTeamOutput } from "./entities";
+import { RecognizementCreationInput, SlackTeamInput, SlackTeamOutput } from "./entities";
+import { RecognizementOutput } from "../../recognizement";
 
 export interface SlackTeamController {
   create: RequestHandler<
@@ -13,4 +14,9 @@ export interface SlackTeamController {
     { slack_teams: SlackTeamOutput[] }
   >;
   delete: RequestHandler<{ slack_id: string }, void, void>;
+  create_recognizement: RequestHandler<
+    { slack_id: string },
+    { recognizement: RecognizementCreationInput },
+    { recognizement: RecognizementOutput }
+  >;
 }

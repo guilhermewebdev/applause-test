@@ -1,7 +1,9 @@
 import { RequestHandler } from "express";
+import { SlackTeamController } from "./controller";
 
 export interface SlackTeamPolicy {
-  create: RequestHandler;
-  list: RequestHandler;
-  delete: RequestHandler;
+  create: SlackTeamController['create'];
+  list: SlackTeamController['list'];
+  delete: SlackTeamController['delete'];
+  create_recognizement: SlackTeamController['create_recognizement'];
 }
