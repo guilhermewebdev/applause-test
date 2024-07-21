@@ -1,5 +1,5 @@
-import { Recognizement } from "./entities";
+import { Recognizement, RecognizementInput } from "./entities";
 
 export interface RecognizementService {
-  create(payload: Recognizement): Promise<Recognizement>;
+  create(payload: RecognizementInput): Promise<Recognizement>;
 }

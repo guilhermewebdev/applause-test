@@ -1,4 +1,4 @@
-import { Recognizement } from "./@types/entities";
+import { Recognizement, RecognizementInput } from "./@types/entities";
 import { RecognizementRepository } from "./@types/repositories/recognizement_repository";
 import { SlackApiChatMessageRepository } from "./@types/repositories/slack_api_chat_message_repository";
 import { RecognizementService } from "./@types/service";
@@ -15,7 +15,7 @@ export class RecognizementServiceImpl implements RecognizementService {
     this.slack_api_chat_message_repository = slack_api_chat_message_repository;
   }
 
-  async create(payload: Recognizement): Promise<Recognizement> {
+  async create(payload: RecognizementInput): Promise<Recognizement> {
     const recognizement = await this.recognizement_repository.create(payload);
     await this.slack_api_chat_message_repository.create(recognizement);
     return recognizement;

@@ -1,7 +1,7 @@
-import { SlackTeam } from "./entities";
+import { SlackTeam, SlackTeamInput } from "./entities";
 
 export interface SlackTeamService {
-  create(payload: SlackTeam): Promise<SlackTeam>;
+  create(payload: SlackTeamInput): Promise<SlackTeam>;
   list(): Promise<SlackTeam[]>;
   delete(id: string): Promise<void>;
 }
