@@ -1,7 +1,8 @@
-import { SlackTeam } from "./entities";
+import { RequestHandler } from "express";
+import { SlackTeam, SlackTeamInput, SlackTeamOutput } from "./entities";
 
 export interface SlackTeamController {
-  create(payload: SlackTeam): Promise<SlackTeam>;
-  list(): Promise<SlackTeam[]>;
-  delete(id: string): Promise<void>;
+  create: RequestHandler<{}, SlackTeamInput, SlackTeamOutput>;
+  list: RequestHandler<{}, void, SlackTeamOutput[]>;
+  delete: RequestHandler<{}, void, void>;
 }
