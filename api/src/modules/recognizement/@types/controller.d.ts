@@ -1,5 +1,6 @@
-import { Recognizement } from "./entities";
+import { RequestHandler } from "express";
+import { Recognizement, RecognizementInput, RecognizementOutput } from "./entities";
 
 export interface RecognizementController {
-  create(payload: Recognizement): Promise<Recognizement>;
+  create: RequestHandler<{}, RecognizementInput, RecognizementOutput>;
 }
