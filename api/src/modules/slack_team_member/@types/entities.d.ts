@@ -4,3 +4,5 @@ export interface SlackTeamMember {
   name: string;
   avatar_url?: string;
 }
+
+export interface SlackTeamMemberOutput extends SlackTeamMember {}
