@@ -1,7 +1,7 @@
 version: "3"
 services:
   api:
-    image: node:20-slim
+    image: node:20
     platform: linux/amd64
     working_dir: /usr/src/applause
     user: node
