@@ -10,7 +10,9 @@ export default [
   {
     rules: {
       indent: ['error', 2]
-    },
-    ignores: ["node_modules/", "dist/"]
+    }
+  },
+  {
+    ignores: ["node_modules/", "dist/", "dist/**/*"]
   }
 ];

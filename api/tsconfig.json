@@ -107,6 +107,6 @@
   },
   "exclude": [
     "node_modules",
-    "**/*.(spec|test).ts"
+    "**/*.test.ts"
   ]
 }
