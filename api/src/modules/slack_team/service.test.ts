@@ -16,6 +16,7 @@ describe('SlackTeamService', () => {
   })
 
   describe('.create_recognizement', () => {
+
     test('when success', async () => {
       const input = {
         message: 'test message',
@@ -37,5 +38,6 @@ describe('SlackTeamService', () => {
       expect(recognizement).not.toHaveProperty('slack_integration_key')
       expect(recognizement).not.toHaveProperty('slack_team_id')
     })
+
   })
 })
