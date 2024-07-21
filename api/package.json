@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "node --watch-path=./src --watch-path=./package.json --watch-path=./tsconfig.json --watch-path=./bin --watch-path=yarn.lock --watch ./bin/dev",
     "build": "tsc",
-    "lint": "eslint ./src ./bin/dev",
+    "lint": "eslint .",
     "start": "node ."
   },
   "devDependencies": {
