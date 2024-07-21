@@ -1,5 +1,5 @@
-import { Recognizement } from "../entities";
+import { Recognizement, RecognizementInput } from "../entities";
 
 export interface SlackApiChatMessageRepository {
-  create(payload: Recognizement): Promise<void>;
+  create(payload: RecognizementInput): Promise<void>;
 }
