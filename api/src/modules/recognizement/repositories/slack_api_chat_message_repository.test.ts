@@ -36,13 +36,12 @@ describe('SlackApiChatMessageRepository', () => {
 
     test('when the error occurs', async () => {
       postMessageMock.mockResolvedValue({ ok: false, error: 'mock_error' })
-      expect(async () => {
-        await repository.create({
-          message: 'test message',
-          slack_team_member_id: '10',
-          slack_integration_key: '555'
-        })
-      }).rejects.toBeInstanceOf(SlackMessageCreationError)
+      const create_promise = repository.create({
+        message: 'test message',
+        slack_team_member_id: '10',
+        slack_integration_key: '555'
+      })
+      await expect(create_promise).rejects.toBeInstanceOf(SlackMessageCreationError)
     })
 
   })
