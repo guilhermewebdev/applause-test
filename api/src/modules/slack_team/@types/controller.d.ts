@@ -16,7 +16,7 @@ export interface SlackTeamController {
   delete: RequestHandler<{ slack_id: string }, void, void>;
   create_recognizement: RequestHandler<
     { slack_id: string },
-    { recognizement: RecognizementCreationInput },
-    { recognizement: RecognizementOutput }
+    { recognizement: RecognizementOutput },
+    { recognizement: RecognizementCreationInput }
   >;
 }
