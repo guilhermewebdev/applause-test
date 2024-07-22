@@ -1,5 +1,5 @@
 import { Db } from "mongodb";
-import { RecognizementModule, RecognizementModuleImpl } from "../recognizement";
+import { RecognizementModule } from "../recognizement";
 import { SlackTeamController } from "./@types/controller";
 import { SlackTeamModule } from "./@types/module";
 import { SlackTeamService } from "./@types/service";
@@ -8,6 +8,8 @@ import { SlackTeamControllerImpl } from "./controller";
 import { Express } from 'express';
 import { SlackTeamPolicyImpl } from "./policy";
 import { SlackTeamPolicy } from "./@types/policy";
+import { SlackTeamRepositoryImpl } from './repositories/slack_team_repository';
+import { SlackTeam } from "./@types/entities";
 
 export class SlackTeamModuleImpl implements SlackTeamModule {
   readonly controller: SlackTeamController;
@@ -17,11 +19,14 @@ export class SlackTeamModuleImpl implements SlackTeamModule {
 
   constructor(
     recognizement_module: RecognizementModule,
-    router: Express
+    router: Express,
+    db: Db
   ) {
+    const collection = db.collection<SlackTeam>('slack_teams')
+    const slack_team_repository = new SlackTeamRepositoryImpl(collection)
     this.service = new SlackTeamServiceImpl(
       recognizement_module.service,
-      {},
+      slack_team_repository,
     )
     this.controller = new SlackTeamControllerImpl(this.service);
     this.router = router;
