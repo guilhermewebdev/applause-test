@@ -14,8 +14,8 @@ export class SlackTeamControllerImpl implements SlackTeamController {
   public create_recognizement: SlackTeamController['create_recognizement'] = async (req, res) => {
     const { slack_id } = req.params;
     const payload = {
-      ...req.body,
-      slack_id,
+      ...req.body.recognizement,
+      slack_team_id: slack_id,
     }
     const validated: RecognizementCreationInput = await SlackTeamValidator.create_recognizement.validate(payload);
     const recognizement = await this.slack_teams.create_recognizement(validated)
