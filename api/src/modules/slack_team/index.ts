@@ -5,7 +5,7 @@ import { SlackTeamModule } from "./@types/module";
 import { SlackTeamService } from "./@types/service";
 import { SlackTeamServiceImpl } from "./service";
 import { SlackTeamControllerImpl } from "./controller";
-import { Express } from 'express';
+import { Router } from 'express';
 import { SlackTeamPolicyImpl } from "./policy";
 import { SlackTeamPolicy } from "./@types/policy";
 import { SlackTeamRepositoryImpl } from './repositories/slack_team_repository';
@@ -14,12 +14,12 @@ import { SlackTeam } from "./@types/entities";
 export class SlackTeamModuleImpl implements SlackTeamModule {
   readonly controller: SlackTeamController;
   readonly service: SlackTeamService;
-  private readonly router: Express;
+  private readonly router: Router;
   private readonly policy: SlackTeamPolicy;
 
   constructor(
     recognizement_module: RecognizementModule,
-    router: Express,
+    router: Router,
     db: Db
   ) {
     const collection = db.collection<SlackTeam>('slack_teams')
