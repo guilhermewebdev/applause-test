@@ -1,5 +1,6 @@
 import { Db, MongoClient } from "mongodb";
-import { RecognizementModule, RecognizementModuleImpl } from "./recognizement";
+import { RecognizementModule } from "./recognizement/@types";
+import { RecognizementModuleImpl } from "./recognizement";
 import { SlackTeamModuleImpl } from "./slack_team";
 import { SlackTeamModule } from "./slack_team/@types/module";
 import { Express, json, Router, urlencoded } from 'express';

@@ -1,5 +1,5 @@
 import { Db } from "mongodb";
-import { RecognizementModule } from "../recognizement";
+import { RecognizementModule } from "../recognizement/@types";
 import { SlackTeamController } from "./@types/controller";
 import { SlackTeamModule } from "./@types/module";
 import { SlackTeamService } from "./@types/service";

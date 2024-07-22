@@ -1,4 +1,4 @@
-import { Recognizement } from "../../recognizement";
+import { Recognizement } from "../../recognizement/@types";
 
 export interface SlackTeam {
   integration_key: string;
