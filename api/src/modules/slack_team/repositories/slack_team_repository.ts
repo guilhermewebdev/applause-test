@@ -2,6 +2,7 @@ import { Collection } from 'mongodb';
 import { SlackTeam } from '../@types/entities';
 import { SlackTeamRepository } from '../@types/repositories/slack_team_repository';
 import { NotFoundError } from '../../../errors/not_found_error';
+import { DataInsertionError } from '../../../errors/data_insertion_error';
 
 export class SlackTeamRepositoryImpl implements SlackTeamRepository {
   private readonly slack_teams: Collection<SlackTeam>;
@@ -18,7 +19,10 @@ export class SlackTeamRepositoryImpl implements SlackTeamRepository {
   }
 
   async create(payload: SlackTeam): Promise<SlackTeam> {
-    return payload;
+    const created = await this.slack_teams.insertOne(payload);
+    const slack_team = await this.slack_teams.findOne({ _id: created.insertedId });
+    if(!slack_team) throw new DataInsertionError()
+    return slack_team;
   }
 
   async delete(id: string): Promise<void> {
