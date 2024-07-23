@@ -2,20 +2,20 @@
 const { exec, spawn } = require('child_process');
 
 function cmd(command) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
+    console.group('$', command)
     exec(command, (error, stdout, stderr) => {
-      if (error) {
+      if(error) {
         console.error(stderr);
-        reject(error);
+        console.warn(stdout);
       } else {
-        console.log(stdout);
-        resolve();
+        console.info(stdout);
       }
+    console.groupEnd(command)
+    resolve();
     });
   });
 }
-
-let serverProcess;
 
 function transpile() {
   return cmd('yarn build');
@@ -26,20 +26,10 @@ function lint() {
 }
 
 function run_server() {
-  if (serverProcess) {
-    serverProcess.kill();
-  }
-
-  serverProcess = spawn('yarn', ['start'], { stdio: 'inherit' });
-
-  serverProcess.on('close', (code) => {
-    if (code !== null) {
-      console.log(`Server process exited with code ${code}`);
-    }
-  });
+  require('../dist/main');
 }
 
-async function main() {
+!async function main() {
   try {
     await lint();
     await transpile();
@@ -47,13 +37,4 @@ async function main() {
   } catch (error) {
     console.error('Error during automation script execution:', error);
   }
-}
-
-main();
-
-process.on('SIGINT', () => {
-  if (serverProcess) {
-    serverProcess.kill();
-  }
-  process.exit();
-});
+}()
