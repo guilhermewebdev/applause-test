@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, describe, expect, test } from '@jest/globals';
+import { afterAll, beforeAll, describe, expect, test, afterEach } from '@jest/globals';
 import { SlackTeamRepository } from '../@types/repositories/slack_team_repository';
 import { SlackTeamRepositoryImpl } from './slack_team_repository';
 import { Collection, Db, MongoClient } from 'mongodb';
@@ -20,6 +20,10 @@ describe('SlackTeamRepository', () => {
 
   afterAll(async () => {
     await connection.close(true)
+  })
+
+  afterEach(async () => {
+    await collection.deleteMany({});
   })
   
   describe('.get', () => {
@@ -44,7 +48,7 @@ describe('SlackTeamRepository', () => {
       const payload: SlackTeam = {
         integration_key: '55',
         name: 'slack team test',
-        slack_id: '33'
+        slack_id: '35'
       }
       const created = await repository.create(payload);
       expect(created).toEqual(payload);
@@ -53,6 +57,20 @@ describe('SlackTeamRepository', () => {
         ...payload,
         _id: recovered?._id
       })
+    })
+  })
+
+  describe('.delete', () => {
+    test('when success', async () => {
+      const slack_team: SlackTeam = {
+        integration_key: '55',
+        name: 'slack team test',
+        slack_id: '33'
+      }
+      await collection.insertOne(slack_team)
+      await repository.delete('33')
+      const recovered = await collection.findOne({ slack_id: '33' })
+      expect(recovered).toBeNull()
     })
   })
 })
