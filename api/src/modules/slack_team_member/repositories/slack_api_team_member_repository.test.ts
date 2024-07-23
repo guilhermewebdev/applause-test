@@ -1,8 +1,7 @@
 import { describe, expect, test, beforeAll, jest } from '@jest/globals';
 import { SlackApiTeamMemberRepository } from '../@types/repositories/slack_api_team_member_repository';
 import { SlackApiTeamMemberRepositoryImpl } from './slack_api_team_member_repository';
-import { Method, TeamInfoArguments, TeamInfoResponse, UsersListArguments, UsersListResponse, WebClient } from '@slack/web-api';
-import { SlackTeamInfoObtentionError } from '../../../errors/slack_team_info_obtention_error';
+import { Method, UsersListArguments, UsersListResponse } from '@slack/web-api';
 import { SlackTeam } from '../../slack_team/@types/entities';
 
 const listMock = jest.fn<Method<UsersListArguments, UsersListResponse>>()

@@ -1,6 +1,5 @@
 import { WebClient } from "@slack/web-api";
-import { SlackTeamService } from "../../slack_team/@types/service";
-import { SlackTeamMember, SlackTeamMemberListInput } from "../@types/entities";
+import { SlackTeamMember } from "../@types/entities";
 import { SlackApiTeamMemberRepository } from "../@types/repositories/slack_api_team_member_repository";
 import { SlackTeamMembersObtetionError } from "../../../errors/slack_team_members_obtetion_error";
 import { SlackTeam } from "../../slack_team/@types/entities";
