@@ -6,4 +6,5 @@ export class SlackTeamServiceMock implements SlackTeamService {
   create_recognizement = jest.fn<SlackTeamService['create_recognizement']>();
   delete = jest.fn<SlackTeamService['delete']>();
   list = jest.fn<SlackTeamService['list']>();
+  get = jest.fn<SlackTeamService['get']>();
 }

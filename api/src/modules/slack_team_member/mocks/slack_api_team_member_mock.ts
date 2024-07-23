@@ -1,6 +1,6 @@
 import { jest } from "@jest/globals";
-import { SlackTeamMemberService } from "../@types/service";
+import { SlackApiTeamMemberRepository } from "../@types/repositories/slack_api_team_member_repository";
 
-export class SlackApiTeamMemberRepositoryMock implements SlackTeamMemberService {
-  list = jest.fn<SlackTeamMemberService['list']>();
+export class SlackApiTeamMemberRepositoryMock implements SlackApiTeamMemberRepository {
+  list = jest.fn<SlackApiTeamMemberRepository['list']>();
 } 

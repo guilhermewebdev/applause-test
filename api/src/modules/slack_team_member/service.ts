@@ -11,8 +11,8 @@ export class SlackTeamMemberServiceImpl implements SlackTeamMemberService {
     slack_api_team_member_repository: SlackApiTeamMemberRepository,
     slack_teams: SlackTeamService,
   ) {
-    this.slack_teams = slack_teams;
     this.slack_api_team_member_repository = slack_api_team_member_repository;
+    this.slack_teams = slack_teams;
   }
 
   async list(payload: SlackTeamMemberListInput): Promise<{ slack_team_members: SlackTeamMember[]; next_page_cursor?: string; }> {
