@@ -42,5 +42,10 @@ export class SlackTeamModuleImpl implements SlackTeamModule {
         this.policy.create_recognizement,
         this.controller.create_recognizement
       )
+      .post(
+        '/slack_team',
+        this.policy.create,
+        this.controller.create,
+      )
   }
 }

@@ -1,19 +1,19 @@
 import { SlackTeamPolicy } from "./@types/policy";
 
 export class SlackTeamPolicyImpl implements SlackTeamPolicy {
-  create_recognizement = async () => {
+  create_recognizement: SlackTeamPolicy['create_recognizement'] = async (_req, _res, next) => {
+    next()
+  }
+
+  create: SlackTeamPolicy['create'] = async (_req, _res, next) => {
+    next()
+  }
+
+  delete: SlackTeamPolicy['delete'] = async () => {
 
   }
 
-  create = async () => {
-
-  }
-
-  delete = async () => {
-
-  }
-
-  list = async () => {
+  list: SlackTeamPolicy['list'] = async () => {
 
   }
 }
