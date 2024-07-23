@@ -65,7 +65,6 @@ export class Application {
   private get middlewares() {
     return [
       json(),
-      urlencoded(),
       morgan("combined"),
       helmet(),
     ]
