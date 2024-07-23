@@ -38,4 +38,21 @@ describe('SlackTeamRepository', () => {
       await expect(repository.get('0')).rejects.toBeInstanceOf(NotFoundError)
     })
   })
+
+  describe('.create', () => {
+    test('when success', async () => {
+      const payload: SlackTeam = {
+        integration_key: '55',
+        name: 'slack team test',
+        slack_id: '33'
+      }
+      const created = await repository.create(payload);
+      expect(created).toEqual(payload);
+      const recovered = await collection.findOne({ slack_id: payload.slack_id });
+      expect(recovered).toEqual({
+        ...payload,
+        _id: recovered?._id
+      })
+    })
+  })
 })
