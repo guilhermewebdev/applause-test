@@ -6,7 +6,7 @@ export interface SlackTeam {
   name: string;
 }
 
-export interface SlackTeamInput extends Omit<SlackTeam, 'slack_id'> {}
+export interface SlackTeamInput extends Omit<SlackTeam, 'slack_id' | 'name'> {}
 
 export interface SlackTeamOutput extends Omit<SlackTeam, 'integration_key'> {}
 

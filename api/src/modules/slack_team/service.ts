@@ -2,17 +2,20 @@ import { SlackTeamService } from "./@types/service";
 import { Recognizement, RecognizementService } from "../recognizement/@types";
 import { RecognizementCreationInput, SlackTeam, SlackTeamInput } from "./@types/entities";
 import { SlackTeamRepository } from "./@types/repositories/slack_team_repository";
-
+import { SlackApiTeamRepository } from "./@types/repositories/slack_api_team_repository";
 export class SlackTeamServiceImpl implements SlackTeamService {
   private readonly recognizements: RecognizementService;
   private readonly slack_team_repository: SlackTeamRepository;
+  private readonly slack_api_team_repository: SlackApiTeamRepository;
 
   constructor(
     recognizements: RecognizementService,
-    slack_team_repository: SlackTeamRepository
+    slack_team_repository: SlackTeamRepository,
+    slack_api_team_repository: SlackApiTeamRepository
   ) {
     this.recognizements = recognizements;
     this.slack_team_repository = slack_team_repository;
+    this.slack_api_team_repository = slack_api_team_repository;
   }
 
   async create_recognizement(payload: RecognizementCreationInput): Promise<Recognizement> {
@@ -25,7 +28,10 @@ export class SlackTeamServiceImpl implements SlackTeamService {
   }
 
   async create(payload: SlackTeamInput): Promise<SlackTeam> {
-    return {} as SlackTeam;
+    const { integration_key } = payload;
+    const slack_team = await this.slack_api_team_repository.get(integration_key);
+    const created = await this.slack_team_repository.create(slack_team);
+    return created;
   }
 
   async delete(id: string): Promise<void> {
