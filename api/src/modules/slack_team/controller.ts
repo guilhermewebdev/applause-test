@@ -40,7 +40,13 @@ export class SlackTeamControllerImpl implements SlackTeamController {
 
   }
 
-  list = async () => {
-
+  public list: SlackTeamController['list'] = async (req, res) => {
+    const slack_teams = await this.slack_teams.list();
+    const response = await Promise.all(
+      slack_teams.map(slack_team_serializer)
+    )
+    return res.status(200).json({
+      slack_teams: response,
+    })
   }
 }
