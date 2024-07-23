@@ -1,7 +1,7 @@
 import { describe, test, beforeEach, expect } from '@jest/globals';
 import { SlackTeamMemberService } from './@types/service';
 import { SlackTeamMemberServiceImpl } from './service';
-import { SlackApiTeamMemberRepositoryMock } from './mocks/slack_api_team_member_mock';
+import { SlackApiTeamMemberRepositoryMock } from './mocks/repositories/slack_api_team_member_mock';
 import { SlackTeamMemberListInput } from './@types/entities';
 import { SlackTeamServiceMock } from '../slack_team/mocks/slack_team_service_mock';
 import { SlackTeam } from '../slack_team/@types/entities';
