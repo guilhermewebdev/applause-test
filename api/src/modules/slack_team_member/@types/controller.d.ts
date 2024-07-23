@@ -3,7 +3,7 @@ import { SlackTeamMemberOutput } from "./entities";
 
 export interface SlackTeamMemberController {
   list: RequestHandler<
-    { slack_id: string },
+    { slack_team_id: string },
     void,
     {
       slack_team_members: SlackTeamMemberOutput[],

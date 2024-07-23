@@ -1,5 +1,6 @@
 import { RequestHandler } from "express";
+import { SlackTeamMemberController } from "./controller";
 
 export interface SlackTeamMemberPolicy {
-  list: RequestHandler;
+  list: SlackTeamMemberController['list'];
 }
