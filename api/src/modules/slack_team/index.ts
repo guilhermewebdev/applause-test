@@ -10,6 +10,7 @@ import { SlackTeamPolicyImpl } from "./policy";
 import { SlackTeamPolicy } from "./@types/policy";
 import { SlackTeamRepositoryImpl } from './repositories/slack_team_repository';
 import { SlackTeam } from "./@types/entities";
+import { SlackApiTeamRepositoryImpl } from "./repositories/slack_api_team_repository";
 
 export class SlackTeamModuleImpl implements SlackTeamModule {
   readonly controller: SlackTeamController;
@@ -22,10 +23,12 @@ export class SlackTeamModuleImpl implements SlackTeamModule {
     db: Db
   ) {
     const collection = db.collection<SlackTeam>('slack_teams')
-    const slack_team_repository = new SlackTeamRepositoryImpl(collection)
+    const slack_team_repository = new SlackTeamRepositoryImpl(collection);
+    const slack_api_team_repository = new SlackApiTeamRepositoryImpl();
     this.service = new SlackTeamServiceImpl(
       recognizement_module.service,
       slack_team_repository,
+      slack_api_team_repository
     )
     this.controller = new SlackTeamControllerImpl(this.service);
     this.router = Router();
