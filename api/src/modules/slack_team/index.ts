@@ -38,17 +38,17 @@ export class SlackTeamModuleImpl implements SlackTeamModule {
   get server() {
     return this.router
       .post(
-        '/slack_team/:slack_id/recognizement',
+        '/slack_teams/:slack_id/recognizement',
         this.policy.create_recognizement,
         this.controller.create_recognizement
       )
       .post(
-        '/slack_team',
+        '/slack_teams',
         this.policy.create,
         this.controller.create,
       )
       .get(
-        '/slack_team',
+        '/slack_teams',
         this.policy.list,
         this.controller.list
       )

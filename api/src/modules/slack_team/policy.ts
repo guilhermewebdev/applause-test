@@ -13,7 +13,7 @@ export class SlackTeamPolicyImpl implements SlackTeamPolicy {
 
   }
 
-  list: SlackTeamPolicy['list'] = async () => {
-
+  list: SlackTeamPolicy['list'] = async (_req, _res, next) => {
+    next()
   }
 }

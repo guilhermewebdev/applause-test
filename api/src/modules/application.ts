@@ -51,6 +51,7 @@ export class Application {
   }
 
   private async setup() {
+    await this.db_client.connect()
     await this.setup_middlewares()
     await this.setup_modules();
   }
