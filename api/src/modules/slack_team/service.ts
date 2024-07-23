@@ -42,4 +42,8 @@ export class SlackTeamServiceImpl implements SlackTeamService {
   async list(): Promise<SlackTeam[]> {
     return this.slack_team_repository.list()
   }
+
+  async get(slack_id: string): Promise<SlackTeam> {
+    return this.slack_team_repository.get(slack_id);
+  }
 }
