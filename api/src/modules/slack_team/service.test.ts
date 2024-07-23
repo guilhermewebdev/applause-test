@@ -32,11 +32,11 @@ describe('SlackTeamService', () => {
         slack_team_id: '55',
         slack_team_member_id: '55'
       }
-      recognizements.create.mockResolvedValue({
+      recognizements.create.mockResolvedValueOnce({
         message: input.message,
         slack_team_member_id: input.slack_team_member_id,
       })
-      slack_team_repository.get.mockResolvedValue({
+      slack_team_repository.get.mockResolvedValueOnce({
         integration_key: 'integration key test',
         name: 'test',
         slack_id: input.slack_team_id,
@@ -58,8 +58,8 @@ describe('SlackTeamService', () => {
         name: 'slack team name',
         slack_id: '55'
       }
-      slack_api_team_repository.get.mockResolvedValue(slack_team_mock)
-      slack_team_repository.create.mockResolvedValue(slack_team_mock);
+      slack_api_team_repository.get.mockResolvedValueOnce(slack_team_mock)
+      slack_team_repository.create.mockResolvedValueOnce(slack_team_mock);
       const created = await service.create({
         integration_key: 'test'
       });
@@ -68,5 +68,26 @@ describe('SlackTeamService', () => {
       expect(slack_team_repository.create).toBeCalledWith(slack_team_mock);
     })
 
+  })
+
+  describe('.list', () => {
+    test('when success', async () => {
+      const slack_teams_mock = [
+        {
+          integration_key: 'test1',
+          name: 'slack team name 1',
+          slack_id: '55'
+        },
+        {
+          integration_key: 'test2',
+          name: 'slack team name 2',
+          slack_id: '54'
+        }
+      ]
+      slack_team_repository.list.mockResolvedValueOnce(slack_teams_mock);
+      const slack_teams = await service.list();
+      expect(slack_team_repository.list).toBeCalledTimes(1);
+      expect(slack_teams).toEqual(slack_teams_mock);
+    })
   })
 })
