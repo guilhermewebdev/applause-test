@@ -36,7 +36,7 @@ export class SlackTeamServiceImpl implements SlackTeamService {
   }
 
   async delete(id: string): Promise<void> {
-    return;
+    await this.slack_team_repository.delete(id);
   }
 
   async list(): Promise<SlackTeam[]> {
