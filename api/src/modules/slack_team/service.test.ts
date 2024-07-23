@@ -96,4 +96,18 @@ describe('SlackTeamService', () => {
       expect(slack_team_repository.delete).toBeCalledWith('5')
     })
   })
+
+  describe('.get', () => {
+    test('when success', async () => {
+      const data_mock = {
+        integration_key: '343',
+        name: 'test',
+        slack_id: '5'
+      }
+      slack_team_repository.get.mockResolvedValueOnce(data_mock)
+      const slack_team = await service.get('5');
+      expect(data_mock).toEqual(slack_team);
+      expect(slack_team_repository.get).toBeCalledWith('5');
+    })
+  })
 })
