@@ -9,8 +9,8 @@ export class SlackTeamPolicyImpl implements SlackTeamPolicy {
     next()
   }
 
-  delete: SlackTeamPolicy['delete'] = async () => {
-
+  delete: SlackTeamPolicy['delete'] = async (_req, _res, next) => {
+    next()
   }
 
   list: SlackTeamPolicy['list'] = async (_req, _res, next) => {

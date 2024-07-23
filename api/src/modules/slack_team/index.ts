@@ -52,5 +52,10 @@ export class SlackTeamModuleImpl implements SlackTeamModule {
         this.policy.list,
         this.controller.list
       )
+      .delete(
+        '/slack_teams/:slack_id',
+        this.policy.delete,
+        this.controller.delete
+      )
   }
 }
