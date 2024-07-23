@@ -25,6 +25,7 @@ export class SlackTeamRepositoryImpl implements SlackTeamRepository {
   }
 
   async list(): Promise<SlackTeam[]> {
-    return []
+    const slack_teams = await this.slack_teams.find().toArray()
+    return slack_teams;
   }
 }
