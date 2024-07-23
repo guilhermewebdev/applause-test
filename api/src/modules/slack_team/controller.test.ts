@@ -25,11 +25,9 @@ describe('SlackTeamController', () => {
           }
         }
       }
-      const statusMock = jest.fn().mockReturnThis();
-      const jsonMock = jest.fn();
       const res = {
-        status: statusMock,
-        json: jsonMock,
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
       }
       slack_teams_service.create_recognizement.mockResolvedValue({
         slack_team_member_id: '55',
@@ -37,8 +35,8 @@ describe('SlackTeamController', () => {
       })
       // @ts-expect-error
       await controller.create_recognizement(req, res, () => {});
-      expect(statusMock).toBeCalledWith(201)
-      expect(jsonMock).toBeCalledWith({
+      expect(res.status).toBeCalledWith(201)
+      expect(res.json).toBeCalledWith({
         recognizement: {
           message: 'test message',
           slack_team_member_id: '55'
@@ -56,11 +54,9 @@ describe('SlackTeamController', () => {
           }
         }
       };
-      const statusMock = jest.fn().mockReturnThis();
-      const jsonMock = jest.fn();
       const res = {
-        status: statusMock,
-        json: jsonMock,
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
       }
       slack_teams_service.create.mockResolvedValueOnce({
         integration_key: req.body.integration_key,
@@ -69,8 +65,8 @@ describe('SlackTeamController', () => {
       })
       // @ts-expect-error
       await controller.create(req, res, () => {})
-      expect(statusMock).toBeCalledWith(201)
-      expect(jsonMock).toBeCalledWith({
+      expect(res.status).toBeCalledWith(201)
+      expect(res.json).toBeCalledWith({
         slack_team: {
           name: 'test',
           slack_id: '55'
