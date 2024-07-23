@@ -3,6 +3,7 @@ import { Recognizement, RecognizementService } from "../recognizement/@types";
 import { RecognizementCreationInput, SlackTeam, SlackTeamInput } from "./@types/entities";
 import { SlackTeamRepository } from "./@types/repositories/slack_team_repository";
 import { SlackApiTeamRepository } from "./@types/repositories/slack_api_team_repository";
+
 export class SlackTeamServiceImpl implements SlackTeamService {
   private readonly recognizements: RecognizementService;
   private readonly slack_team_repository: SlackTeamRepository;
@@ -39,6 +40,6 @@ export class SlackTeamServiceImpl implements SlackTeamService {
   }
 
   async list(): Promise<SlackTeam[]> {
-    return []
+    return this.slack_team_repository.list()
   }
 }
