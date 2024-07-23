@@ -90,4 +90,11 @@ describe('SlackTeamService', () => {
       expect(slack_teams).toEqual(slack_teams_mock);
     })
   })
+
+  describe('.delete', () => {
+    test('when success', async () => {
+      await service.delete('5')
+      expect(slack_team_repository.delete).toBeCalledWith('5')
+    })
+  })
 })
