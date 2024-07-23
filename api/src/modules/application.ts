@@ -8,10 +8,13 @@ import morgan from "morgan";
 import helmet from 'helmet';
 import { Settings } from "../@types/settings";
 import express from 'express';
+import { SlackTeamMemberModule } from "./slack_team_member/@types/module";
+import { SlackTeamMemberModuleImpl } from "./slack_team_member";
 
 export class Application {
   private readonly slack_team: SlackTeamModule;
   private readonly recognizement: RecognizementModule;
+  private readonly slack_team_member: SlackTeamMemberModule;
   private readonly db: Db;
   private readonly db_client: MongoClient;
   private readonly server: Express;
@@ -32,6 +35,9 @@ export class Application {
     this.slack_team = new SlackTeamModuleImpl(
       this.recognizement,
       this.db
+    )
+    this.slack_team_member = new SlackTeamMemberModuleImpl(
+      this.slack_team,
     )
   }
   
@@ -71,7 +77,8 @@ export class Application {
 
   private async setup_modules() {
     const api = Router()
-      .use(this.slack_team.routes);
+      .use(this.slack_team.routes)
+      .use(this.slack_team_member.routes)
     this.server.use('/api', api);
   }
 }
