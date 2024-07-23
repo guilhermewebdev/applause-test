@@ -6,6 +6,6 @@ export async function recognizement_serializer(recognizement: Recognizement): Pr
     message: yup.string().required(),
     slack_team_member_id: yup.string().required(),
   })
-  const result: RecognizementOutput = schema.cast(recognizement);
+  const result: RecognizementOutput = schema.cast(recognizement, { stripUnknown: true });
   return result;
 }

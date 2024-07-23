@@ -5,6 +5,6 @@ export async function slack_team_serializer(slack_team: SlackTeam): Promise<Slac
   const schema = yup.object().shape({
     slack_id: yup.string().required(),
     name: yup.string().required(),
-  })
-  return schema.cast(slack_team);
+  }).strip(true)
+  return schema.cast(slack_team, { stripUnknown: true });
 }

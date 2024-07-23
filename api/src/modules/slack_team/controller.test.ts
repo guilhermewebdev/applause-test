@@ -79,4 +79,28 @@ describe('SlackTeamController', () => {
     })
   })
 
+  describe('.list', () => {
+    test('when success', async () => {
+      const req = {}
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      }
+      slack_teams_service.list.mockResolvedValueOnce([{
+        integration_key: 'integration key',
+        name: 'test',
+        slack_id: '55'
+      }])
+      // @ts-expect-error
+      await controller.list(req, res, () => {})
+      expect(res.status).toBeCalledWith(200)
+      expect(res.json).toBeCalledWith({
+        slack_teams: [{
+          name: 'test',
+          slack_id: '55'
+        }]
+      })
+    })
+  })
+
 })
