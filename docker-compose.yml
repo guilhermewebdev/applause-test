@@ -8,6 +8,11 @@ services:
     command: yarn dev
     volumes:
       - ./api:/usr/src/applause:z
+    environment:
+      PORT: 3000
+      HOST: '0.0.0.0'
+      DB_URL: mongodb://db:27017
+      DB_NAME: applause
     depends_on:
       db:
         condition: service_healthy
