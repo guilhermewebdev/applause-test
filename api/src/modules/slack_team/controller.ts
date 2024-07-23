@@ -23,7 +23,7 @@ export class SlackTeamControllerImpl implements SlackTeamController {
     const response = await recognizement_serializer(recognizement)
     return res.status(201).json({
       recognizement: response
-    }).end();
+    });
   }
 
   public create: SlackTeamController['create'] = async (req, res) => {
@@ -33,7 +33,7 @@ export class SlackTeamControllerImpl implements SlackTeamController {
     const response = await slack_team_serializer(slack_team);
     return res.status(201).json({
       slack_team: response,
-    }).end()
+    });
   }
 
   delete = async () => {

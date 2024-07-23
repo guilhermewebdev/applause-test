@@ -47,4 +47,36 @@ describe('SlackTeamController', () => {
     })
   })
 
+  describe('.create', () => {
+    test('when success', async () => {
+      const req: Partial<Request> = {
+        body: {
+          slack_team: {
+            integration_key: 'integration key'
+          }
+        }
+      };
+      const statusMock = jest.fn().mockReturnThis();
+      const jsonMock = jest.fn();
+      const res = {
+        status: statusMock,
+        json: jsonMock,
+      }
+      slack_teams_service.create.mockResolvedValueOnce({
+        integration_key: req.body.integration_key,
+        name: 'test',
+        slack_id: '55'
+      })
+      // @ts-expect-error
+      await controller.create(req, res, () => {})
+      expect(statusMock).toBeCalledWith(201)
+      expect(jsonMock).toBeCalledWith({
+        slack_team: {
+          name: 'test',
+          slack_id: '55'
+        }
+      })
+    })
+  })
+
 })
