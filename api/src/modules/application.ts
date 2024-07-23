@@ -3,7 +3,7 @@ import { RecognizementModule } from "./recognizement/@types";
 import { RecognizementModuleImpl } from "./recognizement";
 import { SlackTeamModuleImpl } from "./slack_team";
 import { SlackTeamModule } from "./slack_team/@types/module";
-import { Express, json, Router, urlencoded } from 'express';
+import { Express, json, Router } from 'express';
 import morgan from "morgan";
 import helmet from 'helmet';
 import { Settings } from "../@types/settings";
@@ -64,9 +64,9 @@ export class Application {
 
   private get middlewares() {
     return [
-      json(),
-      morgan("combined"),
-      helmet(),
+      json(...this.settings.middlewares.json),
+      morgan(...this.settings.middlewares.morgan),
+      helmet(...this.settings.middlewares.helmet),
     ]
   }
 

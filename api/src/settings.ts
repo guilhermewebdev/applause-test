@@ -3,11 +3,11 @@ import { Settings } from "./@types/settings";
 const {
   PORT = 8080,
   HOST = '0.0.0.0',
-  DB_URL,
-  DB_NAME,
+  DB_URL = '',
+  DB_NAME = '',
 } = process.env;
 
-export default {
+const settings: Settings =  {
   server: {
     port: Number(PORT),
     host: HOST
@@ -19,5 +19,12 @@ export default {
       url: DB_URL,
       options: {}
     }
+  },
+  middlewares: {
+    helmet: [],
+    morgan: ['common', {}],
+    json: [],
   }
-} as Settings
+};
+
+export default settings;
