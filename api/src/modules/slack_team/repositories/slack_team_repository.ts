@@ -22,7 +22,9 @@ export class SlackTeamRepositoryImpl implements SlackTeamRepository {
   }
 
   async delete(id: string): Promise<void> {
-    return;
+    await this.slack_teams.deleteOne({
+      slack_id: id
+    });
   }
 
   async list(): Promise<SlackTeam[]> {
