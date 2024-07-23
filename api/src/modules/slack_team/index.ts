@@ -19,7 +19,6 @@ export class SlackTeamModuleImpl implements SlackTeamModule {
 
   constructor(
     recognizement_module: RecognizementModule,
-    router: Router,
     db: Db
   ) {
     const collection = db.collection<SlackTeam>('slack_teams')
@@ -29,7 +28,7 @@ export class SlackTeamModuleImpl implements SlackTeamModule {
       slack_team_repository,
     )
     this.controller = new SlackTeamControllerImpl(this.service);
-    this.router = router;
+    this.router = Router();
     this.policy = new SlackTeamPolicyImpl()
   }
 

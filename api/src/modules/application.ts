@@ -14,7 +14,6 @@ export class Application {
   private readonly recognizement: RecognizementModule;
   private readonly db: Db;
   private readonly db_client: MongoClient;
-  private readonly router: Router;
   private readonly server: Express;
   private readonly settings: Settings;
 
@@ -29,11 +28,9 @@ export class Application {
       this.settings.db.options,
     );
     this.server = express();
-    this.router = Router();
     this.recognizement = new RecognizementModuleImpl(this.db)
     this.slack_team = new SlackTeamModuleImpl(
       this.recognizement,
-      this.router,
       this.db
     )
   }
@@ -56,7 +53,6 @@ export class Application {
   private async setup() {
     await this.setup_middlewares()
     await this.setup_modules();
-    this.server.use('/api', this.router);
   }
 
   private get middlewares() {
@@ -73,7 +69,8 @@ export class Application {
   }
 
   private async setup_modules() {
-    this.router
-      .use(this.slack_team.server)
+    const api = Router()
+      .use(this.slack_team.server);
+    this.server.use('/api', api);
   }
 }
