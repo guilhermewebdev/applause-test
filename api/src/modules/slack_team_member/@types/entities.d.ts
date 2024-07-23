@@ -6,3 +6,8 @@ export interface SlackTeamMember {
 }
 
 export interface SlackTeamMemberOutput extends SlackTeamMember {}
+
+export interface SlackTeamMemberListInput {
+  slack_team_id: string;
+  page_cursor?: string;
+}

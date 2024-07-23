@@ -1,8 +1,8 @@
-import { SlackTeamMember } from "../entities";
+import { SlackTeamMember, SlackTeamMemberListInput } from "../entities";
 
 export interface SlackApiTeamMemberRepository {
-  list(slack_team_id: string): Promise<{
+  list(payload: SlackTeamMemberListInput): Promise<{
     slack_team_members: SlackTeamMember[],
-    next_page_cursor: string
+    next_page_cursor?: string
   }>;
 }

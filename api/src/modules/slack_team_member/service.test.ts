@@ -2,6 +2,7 @@ import { describe, test, beforeEach, expect } from '@jest/globals';
 import { SlackTeamMemberService } from './@types/service';
 import { SlackTeamMemberServiceImpl } from './service';
 import { SlackApiTeamMemberRepositoryMock } from './mocks/slack_api_team_member_mock';
+import { SlackTeamMemberListInput } from './@types/entities';
 
 
 describe('SlackTeamMemberService', () => {
@@ -25,9 +26,12 @@ describe('SlackTeamMemberService', () => {
         }]
       }
       slack_api_team_member_repository.list.mockResolvedValueOnce(fake_data)
-      const list = await service.list('55');
+      const payload: SlackTeamMemberListInput = {
+        slack_team_id: '55',
+      }
+      const list = await service.list(payload);
       expect(list).toEqual(fake_data);
-      expect(slack_api_team_member_repository.list).toBeCalledWith('55');
+      expect(slack_api_team_member_repository.list).toBeCalledWith(payload);
     })
   })
 })
