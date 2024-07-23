@@ -3,7 +3,6 @@ import { SlackTeamService } from './@types/service';
 import { SlackTeamServiceImpl } from './service';
 import { RecognizementServiceMock } from '../recognizement/mocks/service';
 import { SlackTeamRepositoryMock } from './mocks/repositories/slack_team_repository_mock';
-import { SlackApiTeamRepository } from './@types/repositories/slack_api_team_repository';
 import { SlackApiTeamRepositoryMock } from './mocks/repositories/slack_api_team_repository_mock';
 import { SlackTeam } from './@types/entities';
 
