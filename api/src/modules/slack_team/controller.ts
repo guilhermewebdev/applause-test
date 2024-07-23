@@ -1,7 +1,8 @@
 import { recognizement_serializer } from "../recognizement/serializer";
 import { SlackTeamController } from "./@types/controller";
-import { RecognizementCreationInput } from "./@types/entities";
+import { RecognizementCreationInput, SlackTeamInput } from "./@types/entities";
 import { SlackTeamService } from "./@types/service";
+import { slack_team_serializer } from "./serializer";
 import { SlackTeamValidator } from "./validator";
 
 export class SlackTeamControllerImpl implements SlackTeamController {
@@ -20,13 +21,19 @@ export class SlackTeamControllerImpl implements SlackTeamController {
     const validated: RecognizementCreationInput = await SlackTeamValidator.create_recognizement.validate(payload);
     const recognizement = await this.slack_teams.create_recognizement(validated)
     const response = await recognizement_serializer(recognizement)
-    res.status(201).json({
+    return res.status(201).json({
       recognizement: response
-    });
+    }).end();
   }
 
-  create = async () => {
-
+  public create: SlackTeamController['create'] = async (req, res) => {
+    const { slack_team: payload } = req.body;
+    const validated: SlackTeamInput = await SlackTeamValidator.create.validate(payload);
+    const slack_team = await this.slack_teams.create(validated);
+    const response = await slack_team_serializer(slack_team);
+    return res.status(201).json({
+      slack_team: response,
+    }).end()
   }
 
   delete = async () => {

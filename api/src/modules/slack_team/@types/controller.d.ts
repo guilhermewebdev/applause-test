@@ -5,13 +5,13 @@ import { RecognizementInput, RecognizementOutput } from "../../recognizement";
 export interface SlackTeamController {
   create: RequestHandler<
     void,
-    { slack_team: SlackTeamInput },
-    { slack_team: SlackTeamOutput }
+    { slack_team: SlackTeamOutput },
+    { slack_team: SlackTeamInput }
   >;
   list: RequestHandler<
     void,
+    { slack_teams: SlackTeamOutput[] },
     void,
-    { slack_teams: SlackTeamOutput[] }
   >;
   delete: RequestHandler<{ slack_id: string }, void, void>;
   create_recognizement: RequestHandler<
