@@ -71,7 +71,7 @@ export class Application {
 
   private async setup_modules() {
     const api = Router()
-      .use(this.slack_team.server);
+      .use(this.slack_team.routes);
     this.server.use('/api', api);
   }
 }

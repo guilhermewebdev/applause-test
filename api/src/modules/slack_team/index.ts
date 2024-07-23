@@ -35,7 +35,7 @@ export class SlackTeamModuleImpl implements SlackTeamModule {
     this.policy = new SlackTeamPolicyImpl()
   }
 
-  get server() {
+  get routes() {
     return this.router
       .post(
         '/slack_teams/:slack_id/recognizement',
