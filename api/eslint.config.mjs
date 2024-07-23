@@ -9,7 +9,10 @@ export default [
   ...tseslint.configs.recommended,
   {
     rules: {
-      indent: ['error', 2]
+      indent: ['error', 2],
+      "@typescript-eslint/ban-ts-comment": ["error", {
+        "ts-expect-error": false
+      }]
     }
   },
   {

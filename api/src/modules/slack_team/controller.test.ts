@@ -1,7 +1,6 @@
 import { beforeEach, describe, test, jest, expect } from '@jest/globals';
 import { SlackTeamController } from './@types/controller';
 import { SlackTeamControllerImpl } from './controller';
-import { SlackTeamService } from './@types/service';
 import { SlackTeamServiceMock } from './mocks/slack_team_service_mock';
 import { Request } from 'express';
 
@@ -36,7 +35,7 @@ describe('SlackTeamController', () => {
         slack_team_member_id: '55',
         message: 'test message'
       })
-      // @ts-ignore
+      // @ts-expect-error
       await controller.create_recognizement(req, res, () => {});
       expect(statusMock).toBeCalledWith(201)
       expect(jsonMock).toBeCalledWith({

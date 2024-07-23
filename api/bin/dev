@@ -1,25 +1,59 @@
 #!/usr/bin/env node
-const { exec } = require('child_process');
+const { exec, spawn } = require('child_process');
 
 function cmd(command) {
-  exec(command, (_error, stdout, stderr) => {
-    console.log(stdout)
-    console.error(stderr)
-  })
+  return new Promise((resolve, reject) => {
+    exec(command, (error, stdout, stderr) => {
+      if (error) {
+        console.error(stderr);
+        reject(error);
+      } else {
+        console.log(stdout);
+        resolve();
+      }
+    });
+  });
 }
 
+let serverProcess;
+
 function transpile() {
-  cmd('yarn build')
+  return cmd('yarn build');
 }
 
 function lint() {
-  cmd('yarn lint')
+  return cmd('yarn lint');
 }
 
 function run_server() {
-  cmd('yarn start')
+  if (serverProcess) {
+    serverProcess.kill();
+  }
+
+  serverProcess = spawn('yarn', ['start'], { stdio: 'inherit' });
+
+  serverProcess.on('close', (code) => {
+    if (code !== null) {
+      console.log(`Server process exited with code ${code}`);
+    }
+  });
 }
 
-lint()
-transpile()
-run_server()
+async function main() {
+  try {
+    await lint();
+    await transpile();
+    run_server();
+  } catch (error) {
+    console.error('Error during automation script execution:', error);
+  }
+}
+
+main();
+
+process.on('SIGINT', () => {
+  if (serverProcess) {
+    serverProcess.kill();
+  }
+  process.exit();
+});

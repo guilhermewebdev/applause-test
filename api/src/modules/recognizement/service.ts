@@ -16,8 +16,11 @@ export class RecognizementServiceImpl implements RecognizementService {
   }
 
   async create(payload: RecognizementInput): Promise<Recognizement> {
-    const { slack_integration_key, ...recognizement_data } = payload;
-    const recognizement = await this.recognizement_repository.create(recognizement_data);
+    const { message, slack_team_member_id } = payload;
+    const recognizement = await this.recognizement_repository.create({
+      message,
+      slack_team_member_id
+    });
     await this.slack_api_chat_message_repository.create(payload);
     return recognizement;
   }

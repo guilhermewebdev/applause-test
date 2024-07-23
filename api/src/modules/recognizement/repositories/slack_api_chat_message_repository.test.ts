@@ -1,5 +1,5 @@
-import { describe, expect, test, beforeAll, afterAll, jest } from '@jest/globals';
-import { ChatPostMessageArguments, ChatPostMessageResponse, Method, WebClient } from '@slack/web-api';
+import { describe, expect, test, beforeAll, jest } from '@jest/globals';
+import { ChatPostMessageArguments, ChatPostMessageResponse, Method } from '@slack/web-api';
 import { SlackApiChatMessageRepositoryImpl } from './slack_api_chat_message_repository';
 import { SlackApiChatMessageRepository } from '../@types/repositories/slack_api_chat_message_repository';
 import { SlackMessageCreationError } from '../../../errors/slack_message_creation_error';

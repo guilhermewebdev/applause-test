@@ -1,4 +1,3 @@
-import { RequestHandler } from "express";
 import { SlackTeamController } from "./controller";
 
 export interface SlackTeamPolicy {

@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { RecognizementCreationInput, SlackTeamInput, SlackTeamOutput } from "./entities";
+import { SlackTeamInput, SlackTeamOutput } from "./entities";
 import { RecognizementInput, RecognizementOutput } from "../../recognizement";
 
 export interface SlackTeamController {

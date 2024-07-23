@@ -1,5 +1,4 @@
 import * as yup from 'yup';
-import { RecognizementCreationInput } from './@types/entities';
 
 export class SlackTeamValidator {
   static readonly create_recognizement = yup.object().shape({
