@@ -10,4 +10,6 @@ export class SlackTeamValidator {
   static readonly create = yup.object().shape({
     integration_key: yup.string().required()
   })
+
+  static readonly delete = yup.string().required()
 }

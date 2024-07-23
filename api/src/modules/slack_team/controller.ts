@@ -36,8 +36,11 @@ export class SlackTeamControllerImpl implements SlackTeamController {
     });
   }
 
-  delete = async () => {
-
+  public delete: SlackTeamController['delete'] = async (req, res) => {
+    const { slack_id } = req.params;
+    const validated: string = await SlackTeamValidator.delete.validate(slack_id);
+    await this.slack_teams.delete(validated);
+    return res.status(204);
   }
 
   public list: SlackTeamController['list'] = async (req, res) => {
