@@ -8,6 +8,7 @@ export class SlackTeamRepositoryImpl implements SlackTeamRepository {
   
   constructor(slack_teams: Collection<SlackTeam>) {
     this.slack_teams = slack_teams;
+    this.slack_teams.createIndex({ slack_id: 1 }, { unique: true });
   }
 
   async get(id: string): Promise<SlackTeam> {
