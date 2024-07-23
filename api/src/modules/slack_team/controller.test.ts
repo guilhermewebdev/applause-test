@@ -99,4 +99,21 @@ describe('SlackTeamController', () => {
     })
   })
 
+  describe('.delete', () => {
+    test('when success', async () => {
+      const req = {
+        params: {
+          slack_id: '5'
+        }
+      }
+      const res = {
+        status: jest.fn().mockReturnThis(),
+      }
+      // @ts-expect-error
+      await controller.delete(req, res)
+      expect(slack_teams_service.delete).toBeCalledWith('5')
+      expect(res.status).toBeCalledWith(204);
+    })
+  })
+
 })
