@@ -30,10 +30,10 @@ describe('SlackTeamMemberController', () => {
       }
       const next = jest.fn()
       const slack_team_members: SlackTeamMember[] = [{
-          email: 'test@email.com',
-          name: 'test name',
-          slack_id: '123',
-          avatar_url: 'http://test.com/image.png'
+        email: 'test@email.com',
+        name: 'test name',
+        slack_id: '123',
+        avatar_url: 'http://test.com/image.png'
       }]
       const response_mock  = {
         slack_team_members,
