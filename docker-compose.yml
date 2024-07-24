@@ -28,6 +28,7 @@ services:
     environment:
       NEXT_PUBLIC_API_URL: http://localhost:3000/api
       API_URL: http://api:3000/api
+      ALLOWED_ORIGINS: 'localhost:8080,web:3000'
     depends_on:
       - db
   db:
@@ -88,7 +89,7 @@ services:
     restart: always
     volumes:
       - ./server/conf.d/dev:/etc/nginx/conf.d:ro
-      - ./web/.next/static:/var/www/web-static:ro
+      - ./web/.next/static:/var/www/web-static:z
     command: [nginx-debug, '-g', 'daemon off;']
     depends_on:
       - auth
