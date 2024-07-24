@@ -1,5 +1,7 @@
+import { error_processing } from "../../lib/error_handler";
 import { SlackTeamPolicy } from "./@types/policy";
 
+@error_processing
 export class SlackTeamPolicyImpl implements SlackTeamPolicy {
   create_recognizement: SlackTeamPolicy['create_recognizement'] = async (_req, _res, next) => {
     next()
