@@ -1,5 +1,6 @@
+"use client"
 import { serverClient } from "@/lib/api_client";
-import Link from "next/link";
+import SlackTeamService from "@/services/SlackTeamService";
 
 async function getData(): Promise<SlackTeam[]> {
   const { data: { slack_teams } } = await serverClient.get('/slack_teams')
@@ -9,15 +10,6 @@ async function getData(): Promise<SlackTeam[]> {
 export default async function Home() {
   const slack_teams = await getData();
   return (
-    <main>
-      <h1>Times do Slack</h1>
-      <ul>
-        {slack_teams.map((slack_team) => (
-          <li key={slack_team.slack_id}>
-            <Link href={`/slack_teams/${slack_team.slack_id}/members`}>{slack_team.name}</Link>
-          </li>
-        ))}
-      </ul>
-    </main>
+    <SlackTeamService slack_teams={slack_teams} />
   );
 }
