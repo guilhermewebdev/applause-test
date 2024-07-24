@@ -1,7 +1,6 @@
 import { RequestHandler } from "express";
 
 export function error_handler<T extends CallableFunction>(target: T, _?: any): T {
-  console.log('inseriu o decorator no método')
   const handler: RequestHandler = async function(req, res, next) {
     try {
       await target(req, res, next)
