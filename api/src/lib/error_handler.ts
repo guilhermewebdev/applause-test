@@ -1,13 +1,23 @@
 import { RequestHandler } from "express";
+import { InternalError } from "../errors/internal_error";
+import { ValidationError } from "yup";
+import { DefaultError } from "../errors/default_error";
 
 export function error_handler<T extends CallableFunction>(target: T, _?: any): T {
   const handler: RequestHandler = async function(req, res, next) {
     try {
       await target(req, res, next)
     } catch(error: any) {
-      if(error.code) {
+      if(error instanceof DefaultError) {
         res.status(error.code)
-          .json(error)
+          .json({ error })
+      } else if(error instanceof ValidationError) {
+        res.status(400)
+          .json({ error })
+      } else {
+        console.error(error);
+        res.status(500)
+          .json({ error: new InternalError(error) })
       }
     }
   }

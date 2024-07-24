@@ -29,8 +29,7 @@ export class SlackTeamControllerImpl implements SlackTeamController {
   }
 
   public create: SlackTeamController['create'] = async (req, res) => {
-    const { slack_team: payload } = req.body;
-    const validated: SlackTeamInput = await SlackTeamValidator.create.validate(payload);
+    const { slack_team: validated } = await SlackTeamValidator.create.validate(req.body);
     const slack_team = await this.slack_teams.create(validated);
     const response = await slack_team_serializer(slack_team);
     return res.status(201).json({
