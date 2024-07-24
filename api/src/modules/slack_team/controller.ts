@@ -1,4 +1,4 @@
-import { error_processing } from "../../lib/error_handler";
+import { ErrorProcessing } from "../../lib/error_handler";
 import { recognizement_serializer } from "../recognizement/serializer";
 import { SlackTeamController } from "./@types/controller";
 import { RecognizementCreationInput, SlackTeamInput } from "./@types/entities";
@@ -6,7 +6,7 @@ import { SlackTeamService } from "./@types/service";
 import { slack_team_serializer } from "./serializer";
 import { SlackTeamValidator } from "./validator";
 
-@error_processing
+@ErrorProcessing
 export class SlackTeamControllerImpl implements SlackTeamController {
   private readonly slack_teams: SlackTeamService;
 

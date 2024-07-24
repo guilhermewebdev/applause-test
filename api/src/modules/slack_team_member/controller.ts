@@ -1,11 +1,11 @@
-import { error_processing } from "../../lib/error_handler";
+import { ErrorProcessing } from "../../lib/error_handler";
 import { SlackTeamMemberController } from "./@types/controller";
 import { SlackTeamMember, SlackTeamMemberListInput, SlackTeamMemberOutput } from "./@types/entities";
 import { SlackTeamMemberService } from "./@types/service";
 import { SlackTeamMemberValidator } from "./validator";
 import * as yup from 'yup';
 
-@error_processing
+@ErrorProcessing
 export class SlackTeamMemberControllerImpl implements SlackTeamMemberController {
   private readonly slack_team_members: SlackTeamMemberService;
 

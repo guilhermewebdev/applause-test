@@ -14,7 +14,7 @@ export function error_handler<T extends CallableFunction>(target: T, _?: any): T
   return handler as unknown as typeof target;
 }
 
-export function error_processing<T extends { new (...args: any[]): {} }>(target_class: T) {
+export function ErrorProcessing<T extends { new (...args: any[]): {} }>(target_class: T) {
   return class extends target_class {
     constructor(...args: any[]) {
       super(...args)
