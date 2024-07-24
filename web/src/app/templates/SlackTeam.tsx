@@ -4,7 +4,7 @@ import Link from "next/link";
 export interface SlackTeamTemplatePropos {
   slack_teams: SlackTeam[];
   onRemoveSlackTeam?: (slack_team_id: string) => void;
-  onCreateSlackTeam?: (integration_key: string) => void;
+  onCreateSlackTeam?: (data: FormData) => void;
 }
 
 export default function SlackTeamTemplate(props: SlackTeamTemplatePropos) {
@@ -12,12 +12,12 @@ export default function SlackTeamTemplate(props: SlackTeamTemplatePropos) {
   return (
     <main>
       <h1>Times do Slack</h1>
-      <form>
+      <form action={onCreateSlackTeam}>
         <h2>Adicionar Time</h2>
         <ul>
           <li>
             <label htmlFor="integration_key">Chave de integração</label>
-            <input id="integration_key" type="text" />
+            <input name="integration_key" id="integration_key" type="text" />
           </li>
         </ul>
         <button type="submit">Criar</button>

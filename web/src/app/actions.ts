@@ -6,7 +6,6 @@ const {
 } = process.env;
 
 export async function deleteSlackTeam(slack_team_id: string) {
-  console.log('test')
   await fetch(`${API_URL}/slack_teams/${slack_team_id}`, {
     method: 'DELETE',
     cache: 'no-cache'
@@ -16,11 +15,33 @@ export async function deleteSlackTeam(slack_team_id: string) {
 
 export async function getSlackTeams(): Promise<SlackTeam[]> {
   const res = await fetch(`${API_URL}/slack_teams`, {
+    cache: 'force-cache',
     next: {
       tags: ['slack_teams'],
-      revalidate: 160
+      revalidate: 160,
     }
   })
   const { slack_teams } = await res.json()
   return slack_teams;
+}
+
+export async function createSlackTeam(data: FormData) {
+  try {
+    await fetch(`${API_URL}/slack_teams`, {
+      method: 'POST',
+      cache: 'no-cache',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        slack_team: {
+          integration_key: data.get('integration_key')
+        }
+      }),
+    });
+    revalidateTag('slack_teams');
+  } catch (error) {
+    throw new Error(JSON.stringify(error))
+  }
 }
