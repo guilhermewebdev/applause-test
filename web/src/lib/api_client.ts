@@ -1,10 +1,14 @@
 import axios from 'axios';
-import '@types/node';
 
 const {
-  NEXT_PUBLIC_API_URL
+  NEXT_PUBLIC_API_URL,
+  API_URL
 } = process.env;
 
-export const client = axios({
+export const client = axios.create({
   baseURL: NEXT_PUBLIC_API_URL,
+})
+
+export const serverClient = axios.create({
+  baseURL: API_URL,
 })
