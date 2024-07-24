@@ -14,15 +14,16 @@ export class SlackApiTeamMemberRepositoryImpl implements SlackApiTeamMemberRepos
       team_id: slack_team.slack_id
     });
     if(users.error || !users.ok || !users.members) throw new SlackTeamMembersObtetionError(users.error);
-    const slack_team_members_promises= users.members.map(async (member) => ({
-      email: member.profile?.email,
-      name: member.name,
-      slack_id: member.id,
-      avatar_url: member.profile?.image_48
-    }) as SlackTeamMember)
+    const slack_team_members_promises= users.members
+      .map(async (member) => ({
+        email: member.profile?.email,
+        name: member.profile?.real_name_normalized || member.real_name,
+        slack_id: member.id,
+        avatar_url: member.profile?.image_48
+      }) as SlackTeamMember)
     const slack_team_members = await Promise.all(slack_team_members_promises)
     return {
-      slack_team_members,
+      slack_team_members: slack_team_members.filter(({ email }) => !!email),
       next_page_cursor: users.response_metadata?.next_cursor
     }
   }
