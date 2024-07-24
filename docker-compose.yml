@@ -25,6 +25,8 @@ services:
       - ./web:/usr/src/applause:z
     command: yarn dev
     user: node
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8080/api
     depends_on:
       - db
   db:
