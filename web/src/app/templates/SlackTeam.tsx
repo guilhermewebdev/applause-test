@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { createRef, useEffect } from "react";
 import { useFormState } from "react-dom";
+import styles from '../styles/slack_team.module.scss';
 
 export interface SlackTeamTemplatePropos {
   slack_teams: SlackTeam[];
@@ -23,33 +24,33 @@ export default function SlackTeamTemplate(props: SlackTeamTemplatePropos) {
     if(creationState) form.current?.reset()
   }, [creationState])
   return (
-    <main>
-      <h1>Times do Slack</h1>
-        <section>
-        <h2>Adicionar Time</h2>
-        <form ref={form} action={createSlackTeam}>
-          <ul>
-            <li>
-              <label htmlFor="integration_key">Chave de integração</label>
-              <input required name="integration_key" id="integration_key" type="text" />
+    <main className={styles.main}>
+      <h1 className={styles.h1}>Times do Slack</h1>
+      <section className={styles.slack_team_creation}>
+        <h2 className={styles.h2}>Adicionar Time</h2>
+        <form className={styles.form} ref={form} action={createSlackTeam}>
+          <ul className={styles.form_list}>
+            <li className={styles.form_list_item}>
+              <label className={styles.label} htmlFor="integration_key">Chave de integração</label>
+              <input className={styles.input} required name="integration_key" id="integration_key" type="text" />
             </li>
           </ul>
-          <button type="submit">Criar</button>
+          <button className={styles.button} type="submit">Criar</button>
         </form>
       </section>
-      <section>
-        <h2>Times</h2>
+      <section className={styles.slack_team_list_section}>
+        <h2 className={styles.h2}>Times</h2>
         {deletionState.message && (
-          <p>{deletionState.message}</p>
+          <p className={deletionState.ok ? styles.success : styles.error}>{deletionState.message}</p>
         )}
         {creationState.message && (
-          <p>{creationState.message}</p>
+          <p className={creationState.ok ? styles.success : styles.error}>{creationState.message}</p>
         )}
-        <ul>
+        <ul className={styles.slack_team_list}>
           {slack_teams.map((slack_team) => (
-            <li key={slack_team.slack_id}>
+            <li className={styles.slack_team_item} key={slack_team.slack_id}>
               <Link href={`/slack_teams/${slack_team.slack_id}/members`}>{slack_team.name}</Link>
-              <button type="button" onClick={() => deleteSlackTeamAction(slack_team.slack_id)}>Remover</button>
+              <button className={styles.small_button} type="button" onClick={() => deleteSlackTeamAction(slack_team.slack_id)}>Remover</button>
             </li>
           ))}
         </ul>
