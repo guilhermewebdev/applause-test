@@ -5,6 +5,7 @@ import { RecognizementServiceMock } from '../recognizement/mocks/service';
 import { SlackTeamRepositoryMock } from './mocks/repositories/slack_team_repository_mock';
 import { SlackApiTeamRepositoryMock } from './mocks/repositories/slack_api_team_repository_mock';
 import { SlackTeam } from './@types/entities';
+import { NotFoundError } from '../../errors/not_found_error';
 
 describe('SlackTeamService', () => {
   let service: SlackTeamService;
@@ -58,6 +59,7 @@ describe('SlackTeamService', () => {
         slack_id: '55'
       }
       slack_api_team_repository.get.mockResolvedValueOnce(slack_team_mock)
+      slack_team_repository.get.mockImplementation(() => Promise.reject(new NotFoundError()))
       slack_team_repository.create.mockResolvedValueOnce(slack_team_mock);
       const created = await service.create({
         integration_key: 'test'

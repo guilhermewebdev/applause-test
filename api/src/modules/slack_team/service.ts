@@ -3,6 +3,8 @@ import { Recognizement, RecognizementService } from "../recognizement/@types";
 import { RecognizementCreationInput, SlackTeam, SlackTeamInput } from "./@types/entities";
 import { SlackTeamRepository } from "./@types/repositories/slack_team_repository";
 import { SlackApiTeamRepository } from "./@types/repositories/slack_api_team_repository";
+import { NotFoundError } from "../../errors/not_found_error";
+import { DuplicatedEntryError } from "../../errors/duplicated_entry_error";
 
 export class SlackTeamServiceImpl implements SlackTeamService {
   private readonly recognizements: RecognizementService;
@@ -31,6 +33,11 @@ export class SlackTeamServiceImpl implements SlackTeamService {
   async create(payload: SlackTeamInput): Promise<SlackTeam> {
     const { integration_key } = payload;
     const slack_team = await this.slack_api_team_repository.get(integration_key);
+    const recovered = await this.slack_team_repository.get(slack_team.slack_id)
+      .catch((error: any) => {
+        if(!(error instanceof NotFoundError)) throw new DuplicatedEntryError(slack_team.name) 
+      })
+    if(recovered) throw new DuplicatedEntryError(slack_team.name)
     const created = await this.slack_team_repository.create(slack_team);
     return created;
   }
