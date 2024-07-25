@@ -55,11 +55,9 @@ services:
       - ./web/.next/static:/var/www/web-static:z
     command: [nginx-debug, '-g', 'daemon off;']
     depends_on:
-      - auth
       - web
       - api
     ports:
       - 8080:8080
 volumes:
   database:
-  auth-db:
