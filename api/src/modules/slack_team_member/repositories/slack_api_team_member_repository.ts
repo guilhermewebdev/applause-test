@@ -10,8 +10,7 @@ export class SlackApiTeamMemberRepositoryImpl implements SlackApiTeamMemberRepos
     const client = new WebClient(slack_team.integration_key);
     const users = await client.users.list({
       limit: 100,
-      cursor: page_cursor,
-      team_id: slack_team.slack_id
+      cursor: page_cursor
     });
     if(users.error || !users.ok || !users.members) throw new SlackTeamMembersObtetionError(users.error);
     const slack_team_members_promises= users.members
