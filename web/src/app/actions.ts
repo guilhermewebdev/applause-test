@@ -45,3 +45,15 @@ export async function createSlackTeam(data: FormData) {
     throw new Error(JSON.stringify(error))
   }
 }
+
+export async function getSlackTeamMembers(slack_team_id: string): Promise<SlackTeamMember[]> {
+  const res = await fetch(`${API_URL}/slack_teams/${slack_team_id}/members`, {
+    cache: 'force-cache',
+    next: {
+      tags: ['slack_team_members'],
+      revalidate: 1600,
+    }
+  })
+  const { slack_team_members } = await res.json()
+  return slack_team_members;
+}
