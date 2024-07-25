@@ -6,7 +6,7 @@ import { useFormState } from "react-dom";
 
 interface MembersTemplateProps {
   slack_team_members: SlackTeamMember[];
-  onCreateRecognizement: (formState: MutationResponse, data: FormData) => Promise<MutationResponse>
+  onCreateRecognizement: (formState: MutationState, data: FormData) => Promise<MutationState>
   slack_team_id: string;
 }
 
@@ -14,7 +14,6 @@ const initialRecognizementCreation = {
   message: '',
   ok: true,
 }
-
 
 export default function MembersTemplate(props: MembersTemplateProps) {
   const {
@@ -54,11 +53,11 @@ export default function MembersTemplate(props: MembersTemplateProps) {
           <form ref={form} action={createRecognizement}>
             <label htmlFor="message">Mensagem:</label>
             <div>
-              <input type="text" name="message" id="message" />
+              <input required type="text" name="message" id="message" />
               {!!recognizementCreation?.message && <small>{recognizementCreation.message}</small>}
             </div>
-            <input type="hidden" name="slack_id" value={slack_team_id} />
-            <input type="hidden" name="slack_team_member_id" value={selected.slack_id} />
+            <input required type="hidden" name="slack_id" value={slack_team_id} />
+            <input required type="hidden" name="slack_team_member_id" value={selected.slack_id} />
             <button type="submit">Enviar</button>
           </form>
         </section>

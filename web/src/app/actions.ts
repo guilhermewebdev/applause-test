@@ -5,12 +5,23 @@ const {
   API_URL
 } = process.env;
 
-export async function deleteSlackTeam(slack_team_id: string) {
-  await fetch(`${API_URL}/slack_teams/${slack_team_id}`, {
-    method: 'DELETE',
-    cache: 'no-cache'
-  });
-  revalidateTag('slack_teams')
+export async function deleteSlackTeam(_formState: MutationState, slack_team_id: string): Promise<MutationState> {
+  try {
+    await fetch(`${API_URL}/slack_teams/${slack_team_id}`, {
+      method: 'DELETE',
+      cache: 'no-cache'
+    });
+    revalidateTag('slack_teams')
+    return {
+      message: 'Time removido',
+      ok: true
+    }
+  } catch (error: any) {
+    return {
+      message: error.message || 'Falha ao exluir time',
+      ok: false
+    }
+  }
 }
 
 export async function getSlackTeams(): Promise<SlackTeam[]> {
@@ -58,7 +69,7 @@ export async function getSlackTeamMembers(slack_team_id: string): Promise<SlackT
   return slack_team_members;
 }
 
-export async function createRecognizement(_formState: MutationResponse, data: FormData) {
+export async function createRecognizement(_formState: MutationState, data: FormData) {
   try {
     await fetch(`${API_URL}/slack_teams/${data.get('slack_id')}/recognizement`, {
       method: 'POST',
