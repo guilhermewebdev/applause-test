@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { createRef, useEffect, useMemo, useState } from "react";
 import { useFormState } from "react-dom";
-
+import styles from '../styles/members.module.scss'
 interface MembersTemplateProps {
   slack_team_members: SlackTeamMember[];
   onCreateRecognizement: (formState: MutationState, data: FormData) => Promise<MutationState>
@@ -35,12 +35,12 @@ export default function MembersTemplate(props: MembersTemplateProps) {
     })
   }, [search, slack_team_members])
   return (
-    <main>
+    <main className={styles.main}>
       <nav>
         <Link href='/'>Início</Link>
       </nav>
-      <h1>Criar reconhecimento</h1>
-      <section>
+      <h1 className={styles.h1}>Criar reconhecimento</h1>
+      <section className={styles.members}>
         <h2>Membros do time</h2>
         <fieldset>
           <label htmlFor="search">Buscar membro</label>
@@ -49,9 +49,9 @@ export default function MembersTemplate(props: MembersTemplateProps) {
         <ul>
           {filteredMembers.map(slack_team_member => (
             <li key={slack_team_member.slack_id}>
-              <img src={slack_team_member.avatar_url} alt={slack_team_member.name} />
-              <span>{slack_team_member.name}</span>
-              <span>{slack_team_member.email}</span>
+              <img className={styles.avatar} src={slack_team_member.avatar_url} alt={slack_team_member.name} />
+              <span className={styles.name}>{slack_team_member.name}</span>
+              <span className={styles.email}>{slack_team_member.email}</span>
               <button type="button" onClick={() => select(slack_team_member)}>
                 Criar reconhecimento
               </button>
@@ -60,12 +60,12 @@ export default function MembersTemplate(props: MembersTemplateProps) {
         </ul>
       </section>
       {!!selected && (
-        <section>
+        <section className={styles.recognizement}>
           <h2>Reconhecimento para {selected.name}</h2>
           <form ref={form} action={createRecognizement}>
             <label htmlFor="message">Mensagem:</label>
-            <div>
-              <input required type="text" name="message" id="message" />
+            <div className={styles.message_field}>
+              <textarea required name="message" id="message" />
               {!!recognizementCreation?.message && <small>{recognizementCreation.message}</small>}
             </div>
             <input required type="hidden" name="slack_id" value={slack_team_id} />
