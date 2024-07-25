@@ -12,7 +12,8 @@ export default [
       indent: ['error', 2],
       "@typescript-eslint/ban-ts-comment": ["error", {
         "ts-expect-error": false
-      }]
+      }],
+      "@typescript-eslint/no-explicit-any": ['off']
     }
   },
   {

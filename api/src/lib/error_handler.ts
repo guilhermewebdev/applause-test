@@ -3,7 +3,7 @@ import { InternalError } from "../errors/internal_error";
 import { ValidationError } from "yup";
 import { DefaultError } from "../errors/default_error";
 
-export function error_handler<T extends CallableFunction>(target: T, _?: any): T {
+export function error_handler<T extends CallableFunction>(target: T): T {
   const handler: RequestHandler = async function(req, res, next) {
     try {
       await target(req, res, next)
@@ -24,7 +24,7 @@ export function error_handler<T extends CallableFunction>(target: T, _?: any): T
   return handler as unknown as typeof target;
 }
 
-export function ErrorProcessing<T extends { new (...args: any[]): {} }>(target_class: T) {
+export function ErrorProcessing<T extends { new (...args: any[]): any }>(target_class: T) {
   return class extends target_class {
     constructor(...args: any[]) {
       super(...args)
