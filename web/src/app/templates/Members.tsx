@@ -29,11 +29,12 @@ export default function MembersTemplate(props: MembersTemplateProps) {
   }, [recognizementCreation])
   return (
     <main>
+      <nav>
+        <Link href='/'>Início</Link>
+      </nav>
+      <h1>Criar reconhecimento</h1>
       <section>
         <h2>Membros do time</h2>
-        <nav>
-          <Link href='/'>Início</Link>
-        </nav>
         <ul>
           {slack_team_members.map(slack_team_member => (
             <li key={slack_team_member.slack_id}>
