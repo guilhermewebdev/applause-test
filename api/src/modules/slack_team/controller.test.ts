@@ -108,11 +108,13 @@ describe('SlackTeamController', () => {
       }
       const res = {
         status: jest.fn().mockReturnThis(),
+        end: jest.fn()
       }
       // @ts-expect-error
       await controller.delete(req, res)
       expect(slack_teams_service.delete).toBeCalledWith('5')
       expect(res.status).toBeCalledWith(204);
+      expect(res.end).toBeCalled()
     })
   })
 
