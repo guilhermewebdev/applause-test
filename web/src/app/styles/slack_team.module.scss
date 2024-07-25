@@ -27,7 +27,6 @@
     flex-grow: 1;
     height: 90%;
     width: 70%;
-    overflow: auto;
   }
   .form {
     display: flex;
@@ -61,5 +60,25 @@
   .slack_team_list_section {
     display: flex;
     flex-direction: column;
+    .slack_team_list {
+      overflow-y: auto;
+      overflow-x: hidden;
+      position: relative;
+      padding: 10px;
+      margin: 0px;
+      list-style: none;
+      display: flex;
+      flex: 1 1 auto;
+      height: 100%;
+      flex-direction: column;
+      .slack_team_item {
+        display: flex;
+        border-bottom: 1px solid gainsboro;
+        padding-bottom: 10px;
+        gap: 30px;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
   }
 }
