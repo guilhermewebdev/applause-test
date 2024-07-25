@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+import path from 'path'
 const {
   ALLOWED_ORIGINS = ''
 } = process.env;
@@ -8,7 +9,10 @@ const nextConfig = {
     serverActions: {
       allowedOrigins: ALLOWED_ORIGINS.split(",")
     }
-  }
+  },
+  sassOptions: {
+    includePaths: [path.resolve('./src/app/styles')],
+  },
 };
 
 export default nextConfig;
