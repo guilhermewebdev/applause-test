@@ -22,7 +22,7 @@ export default function SlackTeamTemplate(props: SlackTeamTemplatePropos) {
   const form = createRef<HTMLFormElement>()
   useEffect(() => {
     if(creationState) form.current?.reset()
-  }, [creationState])
+  }, [creationState, form])
   return (
     <main className={styles.main}>
       <h1 className={styles.h1}>Times do Slack</h1>
