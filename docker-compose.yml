@@ -46,43 +46,6 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root_pass
-  auth:
-    image: quay.io/keycloak/keycloak:25.0
-    platform: linux/amd64
-    restart: always
-    command: start-dev
-    depends_on:
-      auth-db:
-        condition: service_healthy
-    environment:
-      KC_DB: postgres
-      KC_DB_URL: jdbc:postgresql://auth-db:5432/auth
-      KC_DB_USERNAME: auth
-      KC_DB_PASSWORD: auth-pass
-      KC_HOSTNAME: localhost
-      KC_HOSTNAME_PORT: 8080
-      KC_HOSTNAME_STRICT: false
-      KC_HOSTNAME_STRICT_HTTPS: false
-      KC_LOG_LEVEL: info
-      KC_METRICS_ENABLED: true
-      KC_HEALTH_ENABLED: true
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
-  auth-db:
-    image: postgres:16
-    platform: linux/amd64
-    restart: always
-    volumes:
-      - auth-db:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: auth-pass
-      POSTGRES_USER: auth
-      POSTGRES_DB: auth
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U auth"]
-      interval: 10s
-      timeout: 3s
-      retries: 3
   server:
     image: nginx:1.26-alpine
     platform: linux/amd64
