@@ -66,10 +66,8 @@ export default function MembersTemplate(props: MembersTemplateProps) {
           <h2>Reconhecimento para {selected.name}</h2>
           <form ref={form} action={createRecognizement}>
             <label htmlFor="message">Mensagem:</label>
-            <div className={styles.message_field}>
-              <textarea required name="message" id="message" />
-              {!!recognizementCreation?.message && <small>{recognizementCreation.message}</small>}
-            </div>
+            <textarea cols={100} rows={15} required name="message" id="message" />
+            {!!recognizementCreation?.message && <small className={recognizementCreation.ok ? styles.success : styles.error}>{recognizementCreation.message}</small>}
             <input required type="hidden" name="slack_id" value={slack_team_id} />
             <input required type="hidden" name="slack_team_member_id" value={selected.slack_id} />
             <button type="submit">Enviar</button>

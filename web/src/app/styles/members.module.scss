@@ -60,5 +60,12 @@
     width: 60%;
     padding-left: 2%;
     border-left: 1px solid gainsboro;
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      row-gap: 15px;
+    }
   }
 }
