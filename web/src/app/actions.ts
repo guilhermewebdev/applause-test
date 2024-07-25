@@ -38,7 +38,7 @@ export async function getSlackTeams(): Promise<SlackTeam[]> {
 
 export async function createSlackTeam(_formState: MutationState, data: FormData) {
   try {
-    await fetch(`${API_URL}/slack_teams`, {
+    const res = await fetch(`${API_URL}/slack_teams`, {
       method: 'POST',
       cache: 'no-cache',
       headers: {
@@ -51,6 +51,13 @@ export async function createSlackTeam(_formState: MutationState, data: FormData)
         }
       }),
     });
+    if (res.status >= 400) {
+      const response = await res.json()
+      return {
+        message: response?.error?.message || 'Falha ao adicionar time',
+        ok: false
+      }
+    }
     revalidateTag('slack_teams');
     return {
       message: 'Time adicionado',
