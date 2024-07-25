@@ -1,9 +1,14 @@
-import SlackTeamService from "@/app/services/SlackTeamService";
 import { getSlackTeams } from "./actions";
+import SlackTeamTemplate from "@/app/templates/SlackTeam";
+import { createSlackTeam, deleteSlackTeam } from "@/app/actions";
 
 export default async function Home() {
   const slack_teams = await getSlackTeams();
   return (
-    <SlackTeamService slack_teams={slack_teams} />
-  );
+    <SlackTeamTemplate
+      slack_teams={slack_teams}
+      onRemoveSlackTeam={deleteSlackTeam}
+      onCreateSlackTeam={createSlackTeam}
+    />
+  )
 }
