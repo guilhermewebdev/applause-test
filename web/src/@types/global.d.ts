@@ -14,3 +14,8 @@ declare interface SlackTeamMember {
   name: string;
   avatar_url?: string;
 }
+
+declare interface MutationResponse {
+  message: string;
+  ok: boolean;
+}
