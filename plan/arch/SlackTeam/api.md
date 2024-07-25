@@ -111,3 +111,51 @@
       - deleta o registro de SlackTeam no banco de dados
   - ### Entities
     - `SlackTeam`
+
+ ## Recognizement Creation
+  - ### Endpoint
+    - `POST /api/slack_team/:slack_id/recognizement`
+      - Retorna:
+        - 201 `Recognizement`
+        - 400 `InvalidParamsError`
+  - ### Params
+    - `slack_id`
+  - ### Payload
+    - `recognizement`
+      - `Recognizement`
+  - ### Controller
+    - `SlackTeamController.create_recognizement`
+      - recebe `recognizement`
+      - retorna `Recognizement`
+  - ### Policies
+    - `RecognizementPolicy.create_recognizement`
+      - Permite todos
+  - ### Validation
+    - `message`
+      - string
+      - obrigatório
+    - `slack_team_member_id`
+      - string
+      - obrigatório
+    - `slack_id`
+      - string
+      - obrigatório
+  - ### Services
+    - `SlackTeamService.create_recognizement`
+      - recebe `recognizement`
+      - recebe `slack_id`
+      - recupera a chave de acesso do time do slack
+        - utilizado o `slack_id`
+      - executa a criação do recognizement
+        - utilizando `RecognizementService.create`
+    - `RecognizementService.create`
+  - ### Repositories
+    - `SlackTeamRepository.get`
+      - recebe `slack_id`
+      - consulta o banco de dados
+      - retorna `SlackTeam`
+    - `RecognizementRepository.create`
+    - `SlackApiChatMessageRepository.create`
+  - ### Entities
+    - `Recognizement`
+    - `SlackTeam`

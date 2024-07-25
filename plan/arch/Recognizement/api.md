@@ -5,34 +5,16 @@
     - `message`
       - string
       - obrigatório
-      - somente escrita
     - `slack_team_member_id`
       - string
       - obrigatório
+    - `slack_integration_key`
+      - string
+      - obrigatório
+      - não persistido
+      - somente input
 
  ## Recognizement Creation
-  - ### Endpoint
-    - `POST /api/recognizement`
-      - Retorna:
-        - 201 `Recognizement`
-        - 400 `InvalidParamsError`
-  - ### Payload
-    - `recognizement`
-      - `Recognizement`
-  - ### Controller
-    - `RecognizementController.create`
-      - recebe `recognizement`
-      - retorna `Recognizement`
-  - ### Policies
-    - `RecognizementPolicy.create`
-      - Permite todos
-  - ### Validation
-    - `message`
-      - string
-      - obrigatório
-    - `slack_team_member_id`
-      - string
-      - obrigatório
   - ### Services
     - `RecognizementService.create`
       - recebe `recognizement`

@@ -1,31 +1,39 @@
 version: "3"
-
 services:
   api:
-    image: node:20.15.1
+    image: node:20
+    platform: linux/amd64
     working_dir: /usr/src/applause
     user: node
     command: yarn dev
     volumes:
       - ./api:/usr/src/applause:z
+    environment:
+      PORT: 3000
+      HOST: '0.0.0.0'
+      DB_URL: mongodb://root:root_pass@db:27017
+      DB_NAME: applause
     depends_on:
       db:
         condition: service_healthy
         restart: true
   web:
-    image: node:20.15.1
+    image: node:20-slim
+    platform: linux/amd64
     working_dir: /usr/src/applause
     volumes:
       - ./web:/usr/src/applause:z
     command: yarn dev
     user: node
-    ports:
-      - 3000:3000
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:3000/api
+      API_URL: http://api:3000/api
+      ALLOWED_ORIGINS: 'localhost:8080,web:3000'
     depends_on:
-      db:
-        condition: service_started
+      - db
   db:
-    image: mongo
+    image: mongo:8.0-rc
+    platform: linux/amd64
     restart: always
     volumes:
       - database:/data/db
@@ -38,6 +46,18 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root_pass
-
+  server:
+    image: nginx:1.26-alpine
+    platform: linux/amd64
+    restart: always
+    volumes:
+      - ./server/conf.d/dev:/etc/nginx/conf.d:ro
+      - ./web/.next/static:/var/www/web-static:z
+    command: [nginx-debug, '-g', 'daemon off;']
+    depends_on:
+      - web
+      - api
+    ports:
+      - 8080:8080
 volumes:
   database:

@@ -1,4 +1,18 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+import path from 'path'
+const {
+  ALLOWED_ORIGINS = ''
+} = process.env;
+
+const nextConfig = {
+  experimental: {
+    serverActions: {
+      allowedOrigins: ALLOWED_ORIGINS.split(",")
+    }
+  },
+  sassOptions: {
+    includePaths: [path.resolve('./src/app/styles')],
+  },
+};
 
 export default nextConfig;

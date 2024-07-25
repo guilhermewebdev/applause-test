@@ -1,4 +1,4 @@
-FROM node:20.15.1-slim
+FROM node:20-slim
 USER node
 WORKDIR /usr/src/applause
 COPY --chown=node:node . .

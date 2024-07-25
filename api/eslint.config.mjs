@@ -2,7 +2,6 @@ import globals from "globals";
 import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
 
-
 export default [
   {files: ["**/*.{js,mjs,cjs,ts}"]},
   {languageOptions: { globals: globals.browser }},
@@ -10,7 +9,19 @@ export default [
   ...tseslint.configs.recommended,
   {
     rules: {
-      indent: ['error', 2]
+      indent: ['error', 2],
+      "@typescript-eslint/ban-ts-comment": ["error", {
+        "ts-expect-error": false
+      }],
+      "@typescript-eslint/no-explicit-any": ['off']
     }
+  },
+  {
+    ignores: [
+      "node_modules/",
+      "dist/",
+      "dist/**/*",
+      "jest-mongodb-config.js"
+    ]
   }
 ];

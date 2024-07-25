@@ -1,25 +1,40 @@
 #!/usr/bin/env node
-const { exec } = require('child_process');
+const { exec, spawn } = require('child_process');
 
 function cmd(command) {
-  exec(command, (_error, stdout, stderr) => {
-    console.log(stdout)
-    console.error(stderr)
-  })
+  return new Promise((resolve) => {
+    console.group('$', command)
+    exec(command, (error, stdout, stderr) => {
+      if(error) {
+        console.error(stderr);
+        console.warn(stdout);
+      } else {
+        console.info(stdout);
+      }
+    console.groupEnd(command)
+    resolve();
+    });
+  });
 }
 
 function transpile() {
-  cmd('yarn build')
+  return cmd('yarn build');
 }
 
 function lint() {
-  cmd('yarn lint')
+  return cmd('yarn lint');
 }
 
 function run_server() {
-  cmd('yarn start')
+  require('../dist/main');
 }
 
-lint()
-transpile()
-run_server()
+!async function main() {
+  try {
+    await lint();
+    await transpile();
+    run_server();
+  } catch (error) {
+    console.error('Error during automation script execution:', error);
+  }
+}()
