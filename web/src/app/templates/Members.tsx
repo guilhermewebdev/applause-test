@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link";
-import { createRef, useEffect, useState } from "react";
+import { createRef, useEffect, useMemo, useState } from "react";
 import { useFormState } from "react-dom";
 
 interface MembersTemplateProps {
@@ -21,12 +21,19 @@ export default function MembersTemplate(props: MembersTemplateProps) {
     onCreateRecognizement,
     slack_team_id
   } = props;
+  const [search, setSearch] = useState('')
   const [selected, select] = useState<SlackTeamMember>()
   const form = createRef<HTMLFormElement>();
   const [recognizementCreation, createRecognizement] = useFormState(onCreateRecognizement, initialRecognizementCreation)
   useEffect(() => {
     if(recognizementCreation.ok) form.current?.reset()
   }, [recognizementCreation])
+  const filteredMembers = useMemo(() => {
+    if(!search) return slack_team_members;
+    return slack_team_members.filter(member =>{
+      return member.email.match(search) || member.email.match(search)
+    })
+  }, [search, slack_team_members])
   return (
     <main>
       <nav>
@@ -35,8 +42,12 @@ export default function MembersTemplate(props: MembersTemplateProps) {
       <h1>Criar reconhecimento</h1>
       <section>
         <h2>Membros do time</h2>
+        <fieldset>
+          <label htmlFor="search">Buscar membro</label>
+          <input type="text" onChange={(event) => setSearch(event.target.value)} id="search" name="search" />
+        </fieldset>
         <ul>
-          {slack_team_members.map(slack_team_member => (
+          {filteredMembers.map(slack_team_member => (
             <li key={slack_team_member.slack_id}>
               <img src={slack_team_member.avatar_url} alt={slack_team_member.name} />
               <span>{slack_team_member.name}</span>
