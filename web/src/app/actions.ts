@@ -57,3 +57,19 @@ export async function getSlackTeamMembers(slack_team_id: string): Promise<SlackT
   const { slack_team_members } = await res.json()
   return slack_team_members;
 }
+
+export async function createRecognizement(data: FormData) {
+  await fetch(`${API_URL}/slack_teams/${data.get('slack_id')}/recognizement`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+      recognizement: {
+        message: data.get('message'),
+        slack_team_member_id: data.get('slack_team_member_id')
+      }
+    })
+  })
+}
