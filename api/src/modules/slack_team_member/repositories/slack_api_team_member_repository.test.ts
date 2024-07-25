@@ -32,7 +32,8 @@ describe('SlackApiTeamMemberRepository', () => {
           name: 'test name',
           profile: {
             email: 'test@email.com',
-            image_48: 'http://test.com/image.png'
+            image_48: 'http://test.com/image.png',
+            real_name_normalized: 'test name',
           },
           id: '100'
         }]
@@ -55,7 +56,6 @@ describe('SlackApiTeamMemberRepository', () => {
       expect(listMock).toBeCalledWith({
         limit: 100,
         cursor: '123',
-        team_id: '44'
       })
     })
 
