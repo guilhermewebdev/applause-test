@@ -1,0 +1,19 @@
+.feedback {
+  padding: 7px;
+  padding: 7px;
+  border-radius: 3px;
+}
+
+.success {
+  @extend .feedback;
+  border: 1px solid green;
+  background-color: rgb(218, 255, 211);
+  color: green;
+}
+
+.error {
+  @extend .feedback;
+  border: 1px solid red;
+  background-color: rgb(253, 239, 241);
+  color: red;
+}

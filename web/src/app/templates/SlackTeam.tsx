@@ -37,15 +37,15 @@ export default function SlackTeamTemplate(props: SlackTeamTemplatePropos) {
           </ul>
           <button className={styles.button} type="submit">Criar</button>
         </form>
-      </section>
-      <section className={styles.slack_team_list_section}>
-        <h2 className={styles.h2}>Times</h2>
         {deletionState.message && (
           <p className={deletionState.ok ? styles.success : styles.error}>{deletionState.message}</p>
         )}
         {creationState.message && (
           <p className={creationState.ok ? styles.success : styles.error}>{creationState.message}</p>
         )}
+      </section>
+      <section className={styles.slack_team_list_section}>
+        <h2 className={styles.h2}>Times</h2>
         <ul className={styles.slack_team_list}>
           {slack_teams.map((slack_team) => (
             <li className={styles.slack_team_item} key={slack_team.slack_id}>

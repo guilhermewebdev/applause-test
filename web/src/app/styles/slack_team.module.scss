@@ -15,14 +15,14 @@
     max-height: 10%;
   }
   .slack_team_creation {
-    padding: 5px;
+    padding: 15px;
     flex-grow: 1;
     height: 90%;
     width: 30%;
     border-right: 1px solid gainsboro;
   }
   .slack_team_list_section {
-    padding: 5px;
+    padding: 15px;
     padding-left: 30px;
     flex-grow: 1;
     height: 90%;
@@ -56,5 +56,10 @@
     .button {
       width: 80px;
     }
+  }
+
+  .slack_team_list_section {
+    display: flex;
+    flex-direction: column;
   }
 }
