@@ -26,7 +26,7 @@ export default function MembersTemplate(props: MembersTemplateProps) {
   const [recognizementCreation, createRecognizement] = useFormState(onCreateRecognizement, initialRecognizementCreation)
   useEffect(() => {
     if(recognizementCreation.ok) form.current?.reset()
-  }, [recognizementCreation.ok])
+  }, [recognizementCreation])
   return (
     <main>
       <section>
