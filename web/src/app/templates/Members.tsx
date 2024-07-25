@@ -43,15 +43,17 @@ export default function MembersTemplate(props: MembersTemplateProps) {
       <section className={styles.members}>
         <h2>Membros do time</h2>
         <fieldset>
-          <label htmlFor="search">Buscar membro</label>
+          <label htmlFor="search">Buscar membro:</label>
           <input type="text" onChange={(event) => setSearch(event.target.value)} id="search" name="search" />
         </fieldset>
         <ul>
           {filteredMembers.map(slack_team_member => (
             <li key={slack_team_member.slack_id}>
               <img className={styles.avatar} src={slack_team_member.avatar_url} alt={slack_team_member.name} />
-              <span className={styles.name}>{slack_team_member.name}</span>
-              <span className={styles.email}>{slack_team_member.email}</span>
+              <div className={styles.info}>
+                <span className={styles.name}>{slack_team_member.name}</span>
+                <span className={styles.email}>{slack_team_member.email}</span>
+              </div>
               <button type="button" onClick={() => select(slack_team_member)}>
                 Criar reconhecimento
               </button>
