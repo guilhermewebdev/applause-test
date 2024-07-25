@@ -9,8 +9,8 @@ const infoMock = jest.fn<Method<TeamInfoArguments, TeamInfoResponse>>()
 jest.mock('@slack/web-api', () => {
   return {
     WebClient: class {
-      team = {
-        info: infoMock
+      auth = {
+        test: infoMock
       }
     }
   }
