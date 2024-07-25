@@ -31,7 +31,7 @@ export default function SlackTeamTemplate(props: SlackTeamTemplatePropos) {
         <form className={styles.form} ref={form} action={createSlackTeam}>
           <ul className={styles.form_list}>
             <li className={styles.form_list_item}>
-              <label className={styles.label} htmlFor="integration_key">Chave de integração</label>
+              <label className={styles.label} htmlFor="integration_key">Chave de integração:</label>
               <input className={styles.input} required name="integration_key" id="integration_key" type="text" />
             </li>
           </ul>
